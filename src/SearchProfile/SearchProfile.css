@@ -1,0 +1,27 @@
+.searchProfile {
+    display: flex;
+    gap:30px;
+    padding: 15px;
+    align-items: center;
+    
+}
+
+.profile {
+    width: 50px;
+    border-radius: 50px;
+    height: 50px;
+}
+
+.buttonBascule {
+    font-weight: bold;
+}
+
+.nameData, .usernameData {
+    color: #fff;
+}
+.buttonBascule {
+    color: #0094F5;
+}
+.usernameData {
+    font-size:15px;
+}

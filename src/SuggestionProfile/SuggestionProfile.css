@@ -1,0 +1,45 @@
+.suggestion {
+    display: flex;
+    gap: 90px;
+
+}
+
+.SuggestionProfile {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.suggestionPourVous,
+.voirTout {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.suggestionPourVous {
+    color: #ffffffa5;
+
+}
+.suggestionProfilFollowing {
+    color: #ffffffa5;
+}
+.suggestionProfilFirstname{
+    color: #fff;
+}
+
+.voirTout {
+    color: #fff;
+}
+
+.go_to_following {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.followers {
+    background: none;
+    color: #0094F5;
+}

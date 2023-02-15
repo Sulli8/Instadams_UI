@@ -1,0 +1,35 @@
+.userMessages {
+    height: 90px;
+    padding:10px;
+
+}
+.userMessages:hover {
+    transition: 0.3s;
+    background-color: #ffffff1f;
+}
+.messageSend {
+
+}
+
+.boxContentMessagesDescription {
+    display: flex;
+    align-items: center;
+    gap:30px;
+  
+
+}
+.profilMessages {
+    background-color: #c4454597;
+    border-radius: 70px;
+    width: 70px;
+    height: 70px;
+}
+
+.userMessagesSend {
+    color:#fff;
+
+}
+
+.messagesDescription {
+    color:#ffffffd8;
+}

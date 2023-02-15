@@ -1,6 +1,11 @@
-
+import {
+    BrowserRouter,
+    Routes,
+    Route, useNavigate
+} from 'react-router-dom';
 import "./Menu.css"
 function Menu() {
+    const navigate = useNavigate();
     return (
         <div className="container">
             <aside>
@@ -11,14 +16,18 @@ function Menu() {
                     <div className="close" id="close-data"></div>
                 </div>
                 <div className="sidebar">
-                    <a >
+                    <a onClick={() => {
+                        navigate("/home")
+                    }} >
                         <span className="material-symbols-outlined">
                             home
                         </span>
                         <h3>Accueil</h3>
                     </a>
 
-                    <a>
+                    <a onClick={() => {
+                        navigate("/profil")
+                    }}>
                         <span className="material-symbols-outlined">
                             person
                         </span>
@@ -26,7 +35,9 @@ function Menu() {
                     </a>
 
 
-                    <a >
+                    <a onClick={() => {
+                        navigate("/createPost")
+                    }}>
                         <span className="material-symbols-outlined">
                             share_reviews
                         </span>
@@ -34,7 +45,9 @@ function Menu() {
                     </a>
 
 
-                    <a >
+                    <a onClick={() => {
+                        navigate("/messages")
+                    }}>
                         <span className="material-symbols-outlined">
                             mail_lock
                         </span>

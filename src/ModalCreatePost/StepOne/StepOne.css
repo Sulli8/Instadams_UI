@@ -1,0 +1,43 @@
+.formStepOne {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.inputStepOne {
+    background-color: black;
+    color: #fff;
+    border: 1px solid #ffffff9d;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.fileStepOne {
+    background-color: #fff;
+}
+
+.fileInputStepOne {
+    display: none;
+}
+
+
+
+.fileInputStepOne+label {
+    font-size: 1.25em;
+    color: white;
+    background-color: #1877F2;
+    display: flex;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: 500;
+    justify-content: center;
+}
+
+.fileInputStepOne:focus+label,
+.fileInputStepOne+label:hover {
+    transition: 0.3s;
+    background-color: #1876f2dc;
+}

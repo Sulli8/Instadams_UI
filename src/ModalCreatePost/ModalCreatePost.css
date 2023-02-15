@@ -1,0 +1,71 @@
+.ModalCreatePost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.ModalCreatePost {
+    background-color: #000;
+    border: 1px solid #ffffff49;
+    border-radius: 2px;
+    width:60%;
+    height: 80vh;
+    margin: auto;
+    animation:1s animationModalCreatePost;
+}
+
+
+@keyframes animationModalCreatePost {
+    from {
+       margin-top: -300px;
+    } to {
+        margin-top: 0px;
+    }
+}
+
+.switchStepBox {
+    width: 50%;
+    min-height: 50vh;
+
+}
+
+.titleStep {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color:#1877F2;
+}
+.buttonSwitchStepSuiv,.buttonSwitchStepPrev {
+    margin-top: 10px;
+    background-color: #fff;
+    border: none;
+    color:#000;
+    border-radius: 6px;
+    padding:7px;
+    width: 90px;
+    font-weight: bold;
+   
+}
+.buttonSwitchStepSuiv {
+    float: right;
+}
+.buttonSwitchStepPrev {
+    float: left;
+}
+
+.buttonSwitchStepSuiv:hover,.buttonSwitchStepPrev:hover  {
+    transition:0.3s;
+    background-color: #ffffffd4;
+}
+
+
+.active {
+    display:block;
+}
+
+.desactive {
+    display: none;
+}

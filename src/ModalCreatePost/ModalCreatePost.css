@@ -65,6 +65,9 @@
 .active {
     display:block;
 }
+.activeStepThree {
+    display: flex;
+}
 
 .desactive {
     display: none;

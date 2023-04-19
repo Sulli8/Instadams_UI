@@ -136,7 +136,7 @@ function Home() {
             id: 123,
             name: "Sullivan",
             username: "Sullivan_sxt",
-            image:"https://www.melty.fr/wp-content/uploads/meltyfr/2022/02/media-26867-scaled.jpg",
+            image: "https://www.melty.fr/wp-content/uploads/meltyfr/2022/02/media-26867-scaled.jpg",
         }
     ]
     const suggestionProfile = [
@@ -144,43 +144,43 @@ function Home() {
             id: 123,
             name: "Sullivan",
             username: "Sullivan_sxt",
-            goToFollowing:"Kessab_M",
-            image:"https://media.vogue.fr/photos/5c2f4640d6f150c37e48eca3/2:3/w_2560%2Cc_limit/laryn_9181.jpeg",
+            goToFollowing: "Kessab_M",
+            image: "https://media.vogue.fr/photos/5c2f4640d6f150c37e48eca3/2:3/w_2560%2Cc_limit/laryn_9181.jpeg",
         },
         {
             id: 12,
             name: "Sullivan",
             username: "Sullivan_sxt",
-            goToFollowing:"Kessab_M",
-            image:"https://s.yimg.com/ny/api/res/1.2/g59hht2hXWLduCfkWhxXVg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://media.zenfs.com/en/vibe_128/f75c3cb9a9f775849bceef748f1d5143",
+            goToFollowing: "Kessab_M",
+            image: "https://s.yimg.com/ny/api/res/1.2/g59hht2hXWLduCfkWhxXVg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://media.zenfs.com/en/vibe_128/f75c3cb9a9f775849bceef748f1d5143",
         },
         {
             id: 1,
             name: "Sullivan",
             username: "Sullivan_sxt",
-            goToFollowing:"Kessab_M",
-            image:"https://generations.fr/media/news/610a4df064738-nas.jpg",
+            goToFollowing: "Kessab_M",
+            image: "https://generations.fr/media/news/610a4df064738-nas.jpg",
         },
         {
             id: 3,
             name: "Sullivan",
             username: "Sullivan_sxt",
-            goToFollowing:"Kessab_M",
-            image:"https://www.rollingstone.com/wp-content/uploads/2022/08/yung-thug-gunna.jpg?w=1581&h=1054&crop=1",
+            goToFollowing: "Kessab_M",
+            image: "https://www.rollingstone.com/wp-content/uploads/2022/08/yung-thug-gunna.jpg?w=1581&h=1054&crop=1",
         },
         {
             id: 2,
             name: "Sullivan",
             username: "Sullivan_sxt",
-            goToFollowing:"Kessab_M",
-            image:"https://www.rollingstone.com/wp-content/uploads/2021/12/chronixx.jpg",
+            goToFollowing: "Kessab_M",
+            image: "https://www.rollingstone.com/wp-content/uploads/2021/12/chronixx.jpg",
         }
-        ,  {
+        , {
             id: 9,
             name: "Sullivan",
             username: "Sullivan_sxt",
-            goToFollowing:"Kessab_M",
-            image:"https://cdns-images.dzcdn.net/images/cover/c2ca203de734451cf5619a569fc8c6e9/264x264.jpg",
+            goToFollowing: "Kessab_M",
+            image: "https://cdns-images.dzcdn.net/images/cover/c2ca203de734451cf5619a569fc8c6e9/264x264.jpg",
         }
     ]
     return (
@@ -195,8 +195,10 @@ function Home() {
                 <SuggestionProfile suggestionProfile={suggestionProfile}></SuggestionProfile>
             </div>
 
+
         </section>
     );
 }
 
 export default Home;
+

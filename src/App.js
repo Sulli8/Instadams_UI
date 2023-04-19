@@ -9,23 +9,37 @@ import {
   Routes,
   Route, Navigate
 } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 
 function App() {
+  const [isloggedIn, setLoggedIn ] = useState(true)
+  const [isloggedOut, setLoggedOut ] = useState(false)
+  useEffect(() => {
+    if(localStorage.getItem('token')){
+      setLoggedIn(true)
+    } else {
+      setLoggedIn(false)
+    }
+   
+   
+  }, [])
 
+  const loggedIn = () =>{
+    console.log(isloggedIn)
+    setLoggedIn(true)
+  }
   return (
-    <>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Auth/>}> </Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/profil" element={<Profil />}></Route>
-        <Route path="/createPost" element={<CreatePost />}></Route>
-        <Route path="/messages" element={<Messages />}></Route>
+        <Route path="/" element={isloggedIn ? <Home /> : <Auth isLogged={loggedIn}/>}> </Route>
+        <Route path="/home" element={isloggedIn ? <Home /> : <Auth isLogged={loggedIn}/>}></Route>
+        <Route path="/profil" element={isloggedIn ? <Profil/> : <Auth isLogged={loggedIn}/> }></Route>
+        <Route path="/createPost" element={ isloggedIn ? <CreatePost />  : <Auth isLogged={loggedIn}/>}></Route>
+        <Route path="/messages" element={ isloggedIn ? <Messages /> : <Auth isLogged={loggedIn}/>}></Route>
         
       </Routes>
     </BrowserRouter>
-    </>
   );
 }
 

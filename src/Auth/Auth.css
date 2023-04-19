@@ -60,11 +60,11 @@
     color: #7E54D8;
   }
 .box_2{
-    padding: 20px;
+    padding: 10px;
     background-color: #fff;
     color: #fff;
     width: 40%;
-    min-height: 50vh;
+    height: 50vh;
 
     
 }

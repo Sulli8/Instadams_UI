@@ -1,0 +1,24 @@
+.StepThree {
+    justify-content: center;
+    align-items: center;
+    gap:90px;
+ 
+}
+.recapImg {
+    height: 200px;
+    width: 150px;
+    border-radius: 2px;
+}
+
+.containerPost {
+    display: flex;
+    flex-direction: column;
+    color: red;
+}
+
+.usernamePost {
+    font-size: 20px;
+}
+.descriptionPost {
+    font-size: 15px;
+}

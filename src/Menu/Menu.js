@@ -54,7 +54,10 @@ function Menu() {
                         <h3>Messages</h3>
                     </a>
 
-                    <a >
+                    <a onClick={() => {
+                        localStorage.removeItem('token');
+                        window.location.href = "/"
+                    }}>
                         <span className="material-symbols-outlined">
                             logout
                         </span>

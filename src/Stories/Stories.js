@@ -3,13 +3,13 @@ import './Stories.css';
 
 function Stories(props) {
  
-  const listStories = props.stories.map((story) => <div style={{
+  const listStories = props.stories.map((story,i) => <div style={{
     backgroundImage: `url(${story.image})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition:"center"
   }}
-  key={story.id} className="story"></div>);
+  key={i} className="story"></div>);
   return (
     <div className="storiesBox">
       {listStories}

@@ -9,7 +9,7 @@
     padding: 8px;
 }
 
-.typePost {
+.type_post, .user_selected {
     margin-top:10px;
     background-color: #000;
     border: 1px solid #ffffff9d;

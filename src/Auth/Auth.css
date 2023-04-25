@@ -1,16 +1,21 @@
-.section{
+.section {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
+@media screen and (max-width:900px) {
+    .section {
+        display: none;
+    }
+  }
 .label {
     font-weight: bold;
     color: #A4A4A4;
 }
 
 .title_auth {
-    color: #7E54D8;
+    color: #5f27cd;
 }
 
 .input {
@@ -19,11 +24,13 @@
     border-radius: 2px;
     padding: 8px;
 }
+
 .containerGoogle {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
+
 .Auth {
     display: flex;
     flex-direction: column;
@@ -31,25 +38,25 @@
     gap: 15px;
     min-height: 53.4vh;
     padding: 0px 10px 0px 10px;
-    
-    
+
+
 }
+
 .error {
     color: rgb(254, 2, 2);
 }
 
-.box_1{
+.box_1 {
     display: flex;
     flex-direction: column;
-    gap:120px;
-    padding:20px;
-    background-color: #7E54D8;
-    border: 1px solid #7E54D8;
+    gap: 120px;
+    padding: 20px;
     color: #fff;
     width: 40%;
     min-height: 50vh;
 
 }
+
 .btnSignIn {
     background-color: #fff;
     border: none;
@@ -57,20 +64,21 @@
     width: 40%;
     height: 39px;
     border-radius: 4px;
-    color: #7E54D8;
-  }
-.box_2{
+    color: #5f27cd;
+}
+
+.box_2 {
     padding: 10px;
     background-color: #fff;
     color: #fff;
     width: 40%;
     height: 50vh;
 
-    
+
 }
+
 .login_auth {
-    background-color: #7E54D8;
-    border: 1px solid #7E54D8;
+    background: #5f27cd;
     color: #fff;
 }
 
@@ -90,16 +98,19 @@
     height: 39px;
     border-radius: 4px;
 }
+
 .titleLine {
-    color:#A4A4A4;
+    color: #A4A4A4;
 }
+
 .line {
     width: 35%;
-    border:0.1px solid #A4A4A4;
+    border: 0.1px solid #A4A4A4;
 }
+
 .containerLine {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:15px;
+    gap: 15px;
 }

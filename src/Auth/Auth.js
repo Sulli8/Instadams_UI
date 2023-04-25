@@ -11,14 +11,12 @@ function Auth(props) {
   const userNameRef = useRef(null);
 
   const passwordRef = useRef(null);
-  const [updatedUserName,setUpdatedUserName] = useState('');
-  const [updatedPassword, setUpdatedPassword] = useState('');
+ 
   const [stateModalSubscribe, setStateModalSubscribe] = useState('none');
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault()
-    setUpdatedUserName(userNameRef.current.value)
-    setUpdatedPassword(passwordRef.current.value)
+
     console.log(userNameRef.current.value,passwordRef.current.value)
     Axios.post(`http://localhost:3001/api/login`, {
       username: userNameRef.current.value,

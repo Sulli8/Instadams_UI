@@ -3,7 +3,7 @@
 /* --------------------- root variables -------------------- */
 
 :root {
-  --color-purple: #7E54D8;
+  --color-purple: #5f27cd;
   --color-primary: #7380ec;
   --color-danger: #ff7782;
   --color-success: #41f1b6;
@@ -67,7 +67,7 @@ body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
   font-size: 0.88rem;
-  background: var(--color-background);
+  background: #5f27cd;
   user-select: none;
   /* empeche de sélectionnner un élément*/
   overflow-x: hidden;

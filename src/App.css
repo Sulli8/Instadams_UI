@@ -9,7 +9,7 @@
 }
 
 .rightContainer {
-  border: 1px solid #7E54D8;
+  border: 1px solid #5f27cd;
   box-sizing: border-box;
   padding: 5px;
 }
@@ -38,7 +38,7 @@
   flex-direction: column;
   gap: 100px;
   padding: 20px;
-  background-color: #7E54D8;
+  background-color: #5f27cd;
 }
 
 .rightContainer {

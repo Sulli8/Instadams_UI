@@ -6,39 +6,61 @@
     height: 100%;
 }
 
-.formHead {
+.form-head {
     position: relative;
     display: flex;
-    flex-direction: column;
-    gap: 80px;
-    min-height: 50vh;
+    justify-content: center;
     background-color: #fff;
     padding: 20px;
-    width: 50%;
-    animation:0.5s modalAnimation;
+    max-width: 430px;
+    margin: auto;
+    animation: 0.5s modalAnimation;
+    border-radius: 3px;
+}
+
+form {
+    width: 100%;
+}
+.input-field {
+    margin-top:10px;
+    width: 100%;
+}
+
+
+.field > input, .button-field > button {
+    border-radius:3px ;
+}
+.field > input {
+    border: 1px solid #5f27cd;
+    padding: 0 15px;
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+
 }
 
 @keyframes modalAnimation {
 
     from {
-       margin-top:-500px;
+        margin-top: -500px;
     }
 
     to {
-        margin-top:0;
+        margin-top: 0;
     }
 
 
 }
 
-.boxHead {
-    display: flex;
-    gap: 85%;
+header {
+    text-align: center;
+    font-size: 28px;
+    font-weight:600;
 }
-
 .title,
 .onclose {
-    color: #7E54D8;
+    color: #5f27cd;
 }
 
 .onclose {
@@ -46,47 +68,29 @@
     border: none;
     font-size: 20px;
     float: right;
-}
-
-label {
-    font-size: 15px;
-    color: #A4A4A4;
-}
-
-.boxInput {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    width: 100%;
 }
 
 .errorSubscribe {
-    color:red;
+    color: red;
     font-style: italic;
 }
-.boxInput>input {
-    background: none;
-    border: 1px solid #A4A4A4;
-    border-radius: 2px;
-    padding: 8px;
-    width: 40%;
-}
 
-.boxBtnAccount {
-    display: flex;
-
-}
-
-.boxBtnAccount>button {
-    background-color: #7E54D8;
+.button-field > button {
+    background-color: #5f27cd;
     color: #fff;
     border: none;
     padding: 9px;
-    border-radius: 2px;
+    margin-top: 10px;
+    width: 100%;
+    transition: all 0.3 ease;
+    cursor: pointer;
 }
-
+.button-field > button:hover{
+    background-color: #6241a9;
+}
 .formSign {
     display: flex;
     flex-direction: column;
-
     gap: 20px;
 }

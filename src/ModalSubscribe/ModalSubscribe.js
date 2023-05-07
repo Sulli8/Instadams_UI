@@ -17,25 +17,33 @@ function ModalSubscribe(props) {
     const [boolError, setBoolError] = useState('none');
     const navigate = useNavigate();
     const handleSubmit = async (event) => {
-        console.log("Mail : ", mailRef.current.value)
-        console.log("Password : ", passwordRef.current.value)
-        console.log("name : ", nameRef.current.value)
-
         event.preventDefault()
         setUpdatedMail(mailRef.current.value)
         setUpdatedPassword(passwordRef.current.value)
-        Axios.post(`http://localhost:3001/api/signup`, {
+        const raw =  {
             email: mailRef.current.value,
             password: passwordRef.current.value,
-            name: nameRef.current.value
-        })
+            username: nameRef.current.value
+        }
+        Axios.post(`http://localhost:3001/api/signup`,raw)
             .then(res => {
                 if (!res.data.message) {
                     setBoolError("block")
                     setErrorSubscribe(res.data.message)
                 } else {
-                    setBoolError("none")
-                    navigate("/home")
+                    Axios.post(`http://localhost:3001/api/login`, {
+                        username: nameRef.current.value,
+                        password: passwordRef.current.value
+                      })
+                        .then(res => {
+                          if (res.data.token != null && res.data.token.length > 20) {
+                            localStorage.setItem("token", res.data.token)
+                            if(localStorage.getItem('token').length > 0){
+                              props.isLogged()
+                              navigate("/home")
+                            }
+                          } 
+                        })
                 }
             })
     }

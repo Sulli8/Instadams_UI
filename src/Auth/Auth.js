@@ -17,7 +17,6 @@ function Auth(props) {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    console.log(userNameRef.current.value,passwordRef.current.value)
     Axios.post(`http://localhost:3001/api/login`, {
       username: userNameRef.current.value,
       password: passwordRef.current.value
@@ -33,7 +32,6 @@ function Auth(props) {
           localStorage.setItem("token", res.data.token)
           if(localStorage.getItem('token').length > 0){
             props.isLogged()
-            
             navigate("/home")
           }
        
@@ -49,7 +47,7 @@ function Auth(props) {
 
   return (
     <>
-      <ModalSubscribe valueState={stateModalSubscribe} setStatutModalSubscribe={setStateModalSubscribe}/>
+      <ModalSubscribe isLogged={props.isLogged} valueState={stateModalSubscribe} setStatutModalSubscribe={setStateModalSubscribe}/>
       <section className='section'>
         <div className='box_1'>
           <div>

@@ -4,7 +4,7 @@ import Stories from "../Stories/Stories"
 import Post from "../Post/Post"
 import SearchProfile from "../SearchProfile/SearchProfile"
 import SuggestionProfile from "../SuggestionProfile/SuggestionProfile"
-function Home() {
+const  Home = () => {
     const stories = [
         {
             id: 1,

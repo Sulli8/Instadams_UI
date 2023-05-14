@@ -14,7 +14,6 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [isloggedIn, setLoggedIn ] = useState(true)
-  const [isloggedOut, setLoggedOut ] = useState(false)
   useEffect(() => {
     if(localStorage.getItem('token')){
       setLoggedIn(true)
@@ -37,7 +36,6 @@ function App() {
         <Route path="/profil" element={isloggedIn ? <Profil/> : <Auth isLogged={loggedIn}/> }></Route>
         <Route path="/createPost" element={ isloggedIn ? <CreatePost />  : <Auth isLogged={loggedIn}/>}></Route>
         <Route path="/messages" element={ isloggedIn ? <Messages /> : <Auth isLogged={loggedIn}/>}></Route>
-        
       </Routes>
     </BrowserRouter>
   );

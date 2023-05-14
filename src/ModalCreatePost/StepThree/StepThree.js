@@ -1,17 +1,9 @@
 import { useEffect, useState } from 'react';
 import './StepThree.css';
-import Axios from 'axios'
 function StepThree(props) {
   return (
     <>
-  
-    <div className={"StepThree " + (props.cpt == 3 ? 'activeStepThree' : 'desactive')}>
-        <div className="containerPost">
-          <p className="usernamePost">Titre</p>
-          <p className="descriptionPost">Description</p>
-          <p>url</p>
-        </div>
-        
+    <div className={"StepThree " + (props.cpt == 3 ? 'activeStepThree' : 'desactive')}>        
     </div>
      <button className={"buttonSwitchStepPrev " + (props.cpt == 3 ? "active" : "desactive")} onClick={
       (e) => {

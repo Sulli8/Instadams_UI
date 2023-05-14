@@ -5,7 +5,48 @@
     width: 100%;
     height: 100%;
 }
+.alert-success, .alert-danger {
+    position: absolute;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    font-weight: 500;
+    border-radius: none;
+    border: none;
+    animation: 0.5s alert;
+    width: 100%;
+}
+.alert-success {
+    background-color: rgb(12, 19, 13);
+    color: #BCD7BE;
+}
+.alert-danger {
+    background-color: rgb(22, 11, 11);
+    color: #f4c7c7;
+}
+@keyframes alert {
 
+    from {
+        top: -20px;
+    }
+    to {
+        top: 0;
+    }
+}
+
+.close {
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    float:right;
+    font-size: 20px;
+    color:#BCD7BE;
+    animation: close;
+}
+@keyframes close {
+    from {
+        top: 0;
+    }
+    to {
+        top: -20px;
+    }
+}
 .form-head {
     position: relative;
     display: flex;
@@ -45,12 +86,9 @@ form {
     from {
         margin-top: -500px;
     }
-
     to {
         margin-top: 0;
     }
-
-
 }
 
 header {

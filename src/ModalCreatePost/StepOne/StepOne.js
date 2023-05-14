@@ -1,24 +1,20 @@
-import FormRange from 'react-bootstrap/esm/FormRange';
+import React, { useState } from 'react';
 import './StepOne.css';
-function StepOne(props) {
-    const handleChange = (e) => {
-        const name = e.target.name
-        console.log(name,e.target.value)
-        console.log(props.frontFormData)
-        props.setFormDataFront({...props.frontFormData,
-            [name]:e.target.value
-        })
-    }
+
+const StepOne = (props) => {
     return (
         <div className={"StepOne " + (props.cpt == 1 ? 'active' : 'desactive')}>
             <div className="formStepOne">
-            <input className="inputStepOne" placeholder="Ajouter une titre" type="text" name="title" id="title" onChange={handleChange}></input>
                 <div className="boxInput">
-                    <input accept="image/*, .jpg,.png,.jpeg" type="file" name="File" id="file" className="fileInputStepOne" onChange={handleChange}></input>
+                    <input required="required" accept="image/*, .jpg,.png,.jpeg" type="file" name="File" id="file" className="fileInputStepOne" onChange={props.handleChange}></input>
                     <label htmlFor="file"> Sélectionner sur l'ordinateur</label>
                 </div>
+               
                 <button type="button" className={"buttonSwitchStepSuiv " + (props.cpt == 1 ? "active" : "desactive")} onClick={
                     () => {
+                        if(props.frontFormData.File.length == 0){
+                            console.log("valide le champs avant de passer àa l'éape suivante")
+                        }
                         props.setCpt(props.cpt + 1)
                     }
                 }>Suivant</button>

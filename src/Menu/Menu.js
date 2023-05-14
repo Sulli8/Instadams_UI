@@ -7,7 +7,7 @@ import "./Menu.css"
 function Menu() {
     const navigate = useNavigate();
     return (
-        <div className="container">
+        <div className="containerMenu">
             <aside>
                 <div className="top">
                     <div className="logo">

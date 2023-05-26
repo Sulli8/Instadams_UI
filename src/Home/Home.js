@@ -4,7 +4,10 @@ import Stories from "../Stories/Stories"
 import Post from "../Post/Post"
 import SearchProfile from "../SearchProfile/SearchProfile"
 import SuggestionProfile from "../SuggestionProfile/SuggestionProfile"
-const  Home = () => {
+import { useEffect, useState } from 'react';
+import Alert from 'react-bootstrap/Alert';
+import Axios from 'axios'
+const  Home = (props) => {
     const stories = [
         {
             id: 1,
@@ -86,50 +89,7 @@ const  Home = () => {
         },
 
     ]
-    const posts = [
-        {
-            id: 1,
-            content: "https://wave.fr/images/1916/04/air-jordan-4-black-cat-cu1110-010-date-de-sortie-prix.jpg",
-            url: "",
-            type: "video",
-            user_id: 2,
-            description: "Air force Black 2",
-            username: "@username",
-            created_at: "2022-03-20",
-            updated_at: "2022-02-13"
-        },
-        {
-            id: 2,
-            content: "http://cdn.shopify.com/s/files/1/0703/6905/0938/products/nike-dunk-low-next-nature-white-mint-w-1-1000.png?v=1673889679",
-            url: "",
-            type: "video",
-            user_id: 2,
-            description: "Air force Black 2",
-            username: "@username",
-            created_at: "2022-03-20",
-            updated_at: "2022-02-13",
-        }, {
-            id: 3,
-            content: "https://www.media.hw-static.com/media/2016/07/columbiapictures_boyznthehood_070816_1800x1200.jpg",
-            url: "",
-            type: "video",
-            user_id: 2,
-            description: "Air force Black 2",
-            username: "@username",
-            created_at: "2022-03-20",
-            updated_at: "2022-02-13",
-        }, {
-            id: 4,
-            content: "https://static01.nyt.com/images/2020/11/12/us/00xp-sitcom-hbo/00xp-sitcom-hbo-mobileMasterAt3x.jpg",
-            url: "",
-            type: "video",
-            user_id: 2,
-            description: "Air force Black 2",
-            username: "@username",
-            created_at: "2022-03-20",
-            updated_at: "2022-02-13",
-        }
-    ]
+    const [posts,setPost] = useState([])
 
     const user = [
         {
@@ -183,8 +143,27 @@ const  Home = () => {
             image: "https://cdns-images.dzcdn.net/images/cover/c2ca203de734451cf5619a569fc8c6e9/264x264.jpg",
         }
     ]
+    let alertDialogPost;
+    useEffect(()=> {
+        Axios.get('http://localhost:3001/api/posts', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+          .then(function (response) {
+            setPost([])
+            console.log("POST : ",response)
+        })
+      }, [])
+    if(props.show_success) {
+        alertDialogPost = <Alert  variant="success">
+              Post ajouté avec succès ! 
+          <svg className="close" onClick={() => props.setShowSuccess(false)} stroke="currentColor" fill="#BCD7BE" stroke-width="0" viewBox="0 0 24 24"  className="close" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#BCD7BE" stroke-width="2" d="M3,3 L21,21 M3,21 L21,3"></path></svg>
+        </Alert>
+      }
     return (
         <section className="Home">
+            {alertDialogPost}
             <Menu></Menu>
             <div className="storiesAndPublication">
                 <Stories stories={stories}></Stories>
@@ -194,8 +173,6 @@ const  Home = () => {
                 <SearchProfile user={user}></SearchProfile>
                 <SuggestionProfile suggestionProfile={suggestionProfile}></SuggestionProfile>
             </div>
-
-
         </section>
     );
 }

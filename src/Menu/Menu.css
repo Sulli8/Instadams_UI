@@ -67,7 +67,7 @@ body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
   font-size: 0.88rem;
-  background: #5F27CD;
+  background: #000;
  
   user-select: none;
   /* empeche de sélectionnner un élément*/
@@ -80,13 +80,14 @@ body {
   display: grid;
   width: 15%;
   gap: 1.8rem;
-   color: #fff;
+  color: #fff;
   margin-top: 0;
   grid-template-columns: 14rem auto 23rem;
 }
 
 a {
   color: var(--color-dark);
+  
 }
 
 img {
@@ -131,7 +132,7 @@ small {
   color: var(--color-info-dark);
 }
 
-p {
+.p {
   color: var(--color-dark-variant);
 }
 
@@ -158,8 +159,9 @@ p {
 aside {
   height: 100vh;
   width: 100%;
-  background-color: var(--color-purple);
+  background-color: #000;
   animation: 0.5s asideAnimation;
+  border-right:1px solid #484848 ;
   padding:8px;
 }
 
@@ -272,13 +274,13 @@ aside .sidebar .message-count {
 
 /* --------------------- MENU BAR -----------------------------*/
 
-/* --------------------- MAIN -----------------------------*/
+/* --------------------- .main -----------------------------*/
 
-main {
+.main {
   margin-top: 1.4rem;
 }
 
-main .date {
+.main .date {
   display: inline-block;
   background: var(--color-light);
   border-radius: var(--border-radius-1);
@@ -286,18 +288,18 @@ main .date {
   padding: 0.5rem 1.6rem;
 }
 
-main .date input[type="date"] {
+.main .date input[type="date"] {
   background: transparent;
   color: var(--color-dark);
 }
 
-main .insights {
+.main .insights {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.6rem;
 }
 
-main .insights>div {
+.main .insights>div {
   background: var(--color-white);
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
@@ -306,11 +308,11 @@ main .insights>div {
   transition: all 300ms ease;
 }
 
-main .insights>div:hover {
+.main .insights>div:hover {
   box-shadow: none;
 }
 
-main .insights>div span {
+.main .insights>div span {
   background: var(--color-primary);
   padding: 0.5rem;
   border-radius: 50%;
@@ -318,38 +320,38 @@ main .insights>div span {
   font-size: 2rem;
 }
 
-main .insights>div.expenses span {
+.main .insights>div.expenses span {
   background: var(--color-danger);
 }
 
-main .insights>div.income span {
+.main .insights>div.income span {
   background: var(--color-success);
 }
 
-main .insights>div .middle {
+.main .insights>div .middle {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-main .insights h3 {
+.main .insights h3 {
   margin: 1rem 0 0.6rem;
   font-size: 1rem;
 }
 
-main .insights .progress {
+.main .insights .progress {
   position: relative;
   width: 92px;
   height: 92px;
   border-radius: 50%;
 }
 
-main .insights svg {
+.main .insights svg {
   width: 7rem;
   height: 7rem;
 }
 
-main .insights svg circle {
+.main .insights svg circle {
   fill: none;
   stroke: var(--color-primary);
   stroke-width: 14;
@@ -357,22 +359,22 @@ main .insights svg circle {
   transform: translate(5px, 5px);
 }
 
-main .insights .sales svg circle {
+.main .insights .sales svg circle {
   stroke-dashoffset: -30;
   stroke-dasharray: 200;
 }
 
-main .insights .expenses svg circle {
+.main .insights .expenses svg circle {
   stroke-dashoffset: 20;
   stroke-dasharray: 80;
 }
 
-main .insights .income svg circle {
+.main .insights .income svg circle {
   stroke-dashoffset: 35;
   stroke-dasharray: 110;
 }
 
-main .insights .progress .number {
+.main .insights .progress .number {
   position: absolute;
   top: 0;
   left: 0;
@@ -383,24 +385,24 @@ main .insights .progress .number {
   align-items: center;
 }
 
-main .insights small {
+.main .insights small {
   margin-top: 1.3rem;
   display: block;
 }
 
-/* --------------------- MAIN -----------------------------*/
+/* --------------------- .main -----------------------------*/
 
 /* --------------------- RECENT ORDERS -----------------------------*/
 
-main .recent-orders {
+.main .recent-orders {
   margin-top: 2rem;
 }
 
-main .recent-orders h2 {
+.main .recent-orders h2 {
   margin-bottom: 0.8rem;
 }
 
-main .recent-orders table {
+.main .recent-orders table {
   background: var(--color-white);
   width: 100%;
   border-radius: var(--card-border-radius);
@@ -410,21 +412,21 @@ main .recent-orders table {
   transition: all 300ms ease;
 }
 
-main .recent-orders table:hover {
+.main .recent-orders table:hover {
   box-shadow: none;
 }
 
-main table tbody td {
+.main table tbody td {
   height: 2.8rem;
   border-bottom: 1px solid var(--color-light);
   color: var(--color-dark-variant);
 }
 
-main table tbody tr:last-child td {
+.main table tbody tr:last-child td {
   border: none;
 }
 
-main .recent-orders a {
+.main .recent-orders a {
   display: block;
   text-align: center;
   margin: 1rem auto;
@@ -587,12 +589,13 @@ main .recent-orders a {
 /* MEDIA QUERIES */
 
 /* If width is less than or equal to 1200px, then do: */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) 
+{
   .storiesAndPublication{
     margin-left:80px;
   }
   .containerMenu {
-    width: 15%;
+    max-width: 90px;
     grid-template-columns: 7rem auto 23rem;
   }
 
@@ -613,12 +616,12 @@ main .recent-orders a {
     margin-top: 1.8rem;
   }
 
-  main .insights {
+  .main .insights {
     grid-template-columns: 1fr;
     gap: 0;
   }
 
-  main .recent-orders {
+  .main .recent-orders {
     width: 94%;
     position: absolute;
     left: 50%;
@@ -626,19 +629,11 @@ main .recent-orders a {
     margin: 2rem 0 0 8.8rem;
   }
 
-  main .recent-orders table {
+  .main .recent-orders table {
     width: 83vw;
   }
 
-  main table thead tr th:last-child,
-  main table thead tr th:first-child {
-    display: none;
-  }
 
-  main table tbody tr td:last-child,
-  main table tbody tr td:first-child {
-    display: none;
-  }
 }
 
 /* If width is less than or equal to 768px, then do: */
@@ -647,111 +642,42 @@ main .recent-orders a {
     margin-left:80px;
   }
   .containerMenu {
-    width: 15%;
-    grid-template-columns: 1fr;
-  }
-
-  aside {
-    position: fixed;
-    left: -100%;
-    background: var(--color-white);
-    width: 18rem;
-    z-index: 3;
-    box-shadow: 1rem 3rem 4rem var(--color-light);
-    height: 100vh;
-    padding-right: var(--card-padding);
-    display: none;
-    animation: showMenu 400ms ease forwards;
-  }
-
-  @keyframes showMenu {
-    top {
-      left: 0;
-    }
-  }
-
-  aside .logo {
-    margin-left: 1rem;
+    width: 90px;
+    grid-template-columns: 7rem auto 23rem;
   }
 
   aside .logo h2 {
-    display: inline;
+    display: none;
   }
 
   aside .sidebar h3 {
-    display: inline;
+    display: none;
   }
 
   aside .sidebar a {
     width: 100%;
-    height: 3.4rem;
   }
 
   aside .sidebar a:last-child {
-    position: absolute;
-    bottom: 5rem;
-  }
-
-  aside .close {
-    display: inline-block;
-    cursor: pointer;
-  }
-
-  main {
-    margin-top: 8rem;
-    padding: 0 1rem;
-  }
-
-  main .recent-orders {
     position: relative;
-    margin: 3rem 0 0 0;
-    width: 100%;
+    margin-top: 1.8rem;
   }
 
-  main .recent-orders table {
-    width: 100%;
-    margin: 0;
+  .main .insights {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  .right {
+  .main .recent-orders {
     width: 94%;
-    margin: 0 auto 4rem;
-  }
-
-  .right .top {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: var(--color-white);
-    width: 100%;
-    height: 4.6rem;
-    padding: 0 0.8rem;
-    align-items: center;
-    margin: 0;
-    z-index: 2;
-    box-shadow: 0 1rem 1rem var(--color-light);
-  }
-
-  .right .top .theme-toggler {
-    width: 4.4rem;
     position: absolute;
-    left: 66%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2rem 0 0 8.8rem;
   }
 
-  .right .profile .info {
-    display: none;
-  }
-
-  .right .top button {
-    display: inline-block;
-    background: transparent;
-    position: absolute;
-    left: 1rem;
-    color: var(--color-dark);
-    cursor: pointer;
-  }
-
-  .right .top button span {
-    font-size: 2rem;
+  .main .recent-orders table {
+    width: 83vw;
   }
 }
+

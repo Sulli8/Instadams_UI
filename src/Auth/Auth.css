@@ -3,7 +3,6 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #5f27cd;
 }
 /* class google login UX */
 .S9gUrf-YoZ4jf {
@@ -11,12 +10,6 @@
     justify-content:center;
     height: 40px;
 }
-
-@media screen and (max-width:900px) {
-    .section {
-        display: none;
-    }
-  }
 .label {
     font-weight: bold;
     color: #A4A4A4;
@@ -81,7 +74,7 @@
     color: #fff;
     width: 40%;
     height: 50vh;
-
+    
 
 }
 
@@ -121,4 +114,24 @@
     justify-content: center;
     align-items: center;
     gap: 15px;
+}
+
+.connecter_hambourg_icon {
+    display: none;
+    justify-content:space-between ;
+    align-items: baseline;
+    color:#000;
+}
+@media only screen and (max-width: 720px) {
+    .box_1 {
+        display: none;
+    }
+    .connecter_hambourg_icon {
+        display: flex;
+    }
+}
+@media only screen and (max-width: 667px) {
+    .section {
+        display: none;
+    }
 }

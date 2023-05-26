@@ -8,8 +8,6 @@ function StepTwo(props) {
     <>
       <div className={"StepTwo " + (props.cpt == 2 ? 'active' : 'desactive')} >
         <input type="text" className="inputStepTwo" placeholder="Hashtag" name="hashtag" id="hashtag" onChange={props.handleChange}></input>
-
-        <input type="text" className="inputStepTwo" placeholder="Lien" name="url" id="url" onChange={props.handleChange}></input>
         <select className="type_post" name="content" onChange={props.handleChange}>
           <option defaultValue={'DEFAULT'} disabled>Choissisez un type de post</option>
           <option value="Image">Image</option>

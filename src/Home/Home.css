@@ -1,6 +1,6 @@
 .Home {
     display: flex;   
-    gap:60px; 
+    justify-content: space-between;
 }
 
 .storiesAndPublication {
@@ -9,7 +9,7 @@
     overflow-y: scroll;
     margin-left:150px ;
     -ms-overflow-style: none;  
-scrollbar-width: none;
+    scrollbar-width: none;
     
 }
 

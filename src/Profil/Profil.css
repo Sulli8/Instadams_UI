@@ -1,3 +1,11 @@
-.profil {
-    
+.profil_body {
+    display: flex;
+       
+}
+
+.main_profil {
+    background-color: #000;
+    width: 99%;
+    height: 100vh;
+    overflow-y: scroll;
 }

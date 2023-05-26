@@ -20,21 +20,20 @@ function App() {
     } else {
       setLoggedIn(false)
     }
-   
-   
   }, [])
 
   const loggedIn = () =>{
     console.log(isloggedIn)
     setLoggedIn(true)
   }
+  const [show_success,setShowSuccess] = useState(false)
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={isloggedIn ? <Home /> : <Auth isLogged={loggedIn}/>}> </Route>
-        <Route path="/home" element={isloggedIn ? <Home /> : <Auth isLogged={loggedIn}/>}></Route>
+        <Route path="/home" element={isloggedIn ? <Home setShowSuccess={setShowSuccess} show_success={show_success} /> : <Auth isLogged={loggedIn}/>}></Route>
         <Route path="/profil" element={isloggedIn ? <Profil/> : <Auth isLogged={loggedIn}/> }></Route>
-        <Route path="/createPost" element={ isloggedIn ? <CreatePost />  : <Auth isLogged={loggedIn}/>}></Route>
+        <Route path="/createPost" element={ isloggedIn ? <CreatePost setShowSuccess={setShowSuccess} />  : <Auth isLogged={loggedIn}/>}></Route>
         <Route path="/messages" element={ isloggedIn ? <Messages /> : <Auth isLogged={loggedIn}/>}></Route>
       </Routes>
     </BrowserRouter>

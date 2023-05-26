@@ -7,6 +7,7 @@ import {
     BrowserRouter as Router, useNavigate
 } from 'react-router-dom';
 import { CiWarning} from 'react-icons/ci';
+import { RxCross2} from 'react-icons/rx';
 
 function ModalSubscribe(props) {
     const mailRef = useRef(null);
@@ -51,12 +52,12 @@ function ModalSubscribe(props) {
             <div className="form-head">
                 <form onSubmit={handleSubmit}>
                     <div className="field input-field">
-                        <button className="onclose" onClick={() => {
+                        <RxCross2 className="onclose" onClick={() => {
                             props.setStatutModalSubscribe('none')
                         }
-                        }>X</button>
+                        }/>
                      
-                        <header className="title">Sign Up</header>
+                    <header className="title">Inscrivez-vous</header>
                     </div>
                     <div className="field input-field">
                         <input placeholder="Mail" className="" minLength={10} ref={mailRef} type="mail" required></input>

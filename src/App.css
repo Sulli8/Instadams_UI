@@ -54,12 +54,5 @@
 
   .rightContainer {
     transition: 0.3s;
-    display: none;
-  }
-}
-
-@media screen and (max-width:600px) {
-  .App {
-    display: none;
   }
 }

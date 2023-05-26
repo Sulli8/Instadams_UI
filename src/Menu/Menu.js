@@ -1,12 +1,16 @@
 import {
     BrowserRouter,
     Routes,
-    Route, useNavigate
+    Route,useNavigate
 } from 'react-router-dom';
+import {useState} from "react"
 import "./Menu.css"
+import SearchUser from '../SearchUser/SearchUser';
 function Menu() {
     const navigate = useNavigate();
+    const [showSearchBar,setShowSearchBar] = useState("none")
     return (
+        <>
         <div className="containerMenu">
             <aside>
                 <div className="top">
@@ -24,7 +28,14 @@ function Menu() {
                         </span>
                         <h3>Accueil</h3>
                     </a>
-
+                    <a  onClick={() => {
+                        setShowSearchBar('block')
+                    }}>
+                        <span className="material-symbols-outlined">
+                        search
+                        </span>
+                        <h3>Rechercher</h3>
+                    </a>
                     <a onClick={() => {
                         navigate("/profil")
                     }}>
@@ -56,6 +67,7 @@ function Menu() {
 
                     <a onClick={() => {
                         localStorage.removeItem('token');
+                       
                         window.location.href = "/"
                     }}>
                         <span className="material-symbols-outlined">
@@ -66,6 +78,8 @@ function Menu() {
                 </div>
             </aside>
         </div>
+        <SearchUser showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
+        </>
     )
 }
 export default Menu

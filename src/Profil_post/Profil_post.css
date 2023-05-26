@@ -1,0 +1,55 @@
+.Profil_post {
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.btn_nav_account {
+    text-align: center;
+    font-size: 15px;
+    color: #fff;
+    background-color: #8b8b8b4e;
+    border-radius:5px ;
+    padding: 2px;
+    width: 150px;
+}
+.btn_nav_account:hover {
+    transition: 0.1s;
+    background-color: #7e7e7e4e;
+}
+.row_post_user {
+    display: flex;
+    gap:10px;
+    margin-bottom:10px ;
+  
+}
+.column_post_user {
+    background-color: #fff;
+    height: 200px;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+.main_post_user {
+    padding: 10px;
+    width: 100%;
+    overflow: scroll;
+}
+.navbar_post {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 5px;
+    padding-bottom:5px ;
+    color: #000;
+    width: 100%;
+}
+@media only screen and (max-width: 768px) {
+    .row {
+        flex-wrap: wrap;
+    }
+    .row_post_user{
+        flex-direction: column;
+    }
+}

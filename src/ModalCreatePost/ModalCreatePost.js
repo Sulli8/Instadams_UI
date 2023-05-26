@@ -21,7 +21,7 @@ const ModalCreatePost = (props) => {
     const [front_form_data, setFormDataFront] = useState({
         File:"",
         hashtag:"",
-        link:"",
+        url:"",
         content:"",
         username:"Username",
         userId:0
@@ -51,6 +51,7 @@ const ModalCreatePost = (props) => {
         const values = [...form_data.values()]
         const is_empty = values.includes("")
         const raw = Object.fromEntries(form_data)
+        raw['url'] = "link_by_default"
         raw['userId'] = user_id
         if(!is_empty){
             Axios.post(`http://localhost:3001/api/posts`,raw,{
@@ -61,6 +62,7 @@ const ModalCreatePost = (props) => {
             })
             .then(res => {
                 if(res.data.message == "Post created successfully"){
+                    props.setShowSuccess(true)
                     navigate('/home')
                 }
               

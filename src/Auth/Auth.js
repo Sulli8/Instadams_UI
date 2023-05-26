@@ -7,6 +7,7 @@ import {
 import ModalSubscribe from "../ModalSubscribe/ModalSubscribe"
 import Alert from 'react-bootstrap/Alert';
 import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from "jwt-decode"
 function Auth(props) {
   let alertDialog;
   const userNameRef = useRef(null);
@@ -41,9 +42,15 @@ function Auth(props) {
   }
   const responseMessage = (response) => {
     console.log(response)
-    /*Axios.post(`http://localhost:3001/api/google_login`, {
-      google:true
-      }, {
+    let user_object_google = jwt_decode(response.credential)
+    console.log(user_object_google)
+    const raw =  {
+      email: user_object_google.email,
+      password: user_object_google.sub,
+      username: "G_"+user_object_google.given_name
+    }
+  const auth_google = () => {
+    Axios.post(`http://localhost:3001/api/login`,raw, {
       headers: {
         'Access-Control-Allow-Origin' : '*'
       }
@@ -51,6 +58,7 @@ function Auth(props) {
       .then(res => {
         if (res.data.token != null && res.data.token.length > 20) {
           localStorage.setItem("token", res.data.token)
+          console.log('Utilisateur existant : connexion ! ')
           if(localStorage.getItem('token').length > 0){
             props.isLogged()
             navigate("/home")
@@ -59,21 +67,43 @@ function Auth(props) {
       })
       .catch(error => {
         setShowError(true)
-      })*/
-  };
+      })
+  }
+
+  if(localStorage.getItem('login_google')){
+    auth_google()
+  } else {
+      Axios.post(`http://localhost:3001/api/signup`,raw,{
+        headers: {
+            'Access-Control-Allow-Origin' : '*',
+          }
+      })
+        .then(res => {
+          console.log("respsone : ",res)
+          if(res.data.message) {
+
+            localStorage.setItem('login_google',true)
+            auth_google()
+          }
+          
+
+        })
+    };
+  }
+  
   const errorMessage = (error) => {
     setShowError(true)
   };
   if(show_success) {
     alertDialog = <Alert  variant="success">
           Utilisateur ajouté avec succès ! Vous pouvez désormais vous connecté.
-      <svg className="close" onClick={() => setShowSuccess(false)} stroke="currentColor" fill="#BCD7BE" stroke-width="0" viewBox="0 0 24 24"  class="close" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#BCD7BE" stroke-width="2" d="M3,3 L21,21 M3,21 L21,3"></path></svg>
+      <svg className="close" onClick={() => setShowSuccess(false)} stroke="currentColor" fill="#BCD7BE" stroke-width="0" viewBox="0 0 24 24"   height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#BCD7BE" stroke-width="2" d="M3,3 L21,21 M3,21 L21,3"></path></svg>
     </Alert>
   }
   if(show_error){
     alertDialog = <Alert variant="danger">
     Username ou mot de passe incorrect.
-    <svg className="close" onClick={() => setShowError(false)} stroke="currentColor" fill="#BCD7BE" stroke-width="0" viewBox="0 0 24 24"  class="close" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#f4c7c7" stroke-width="2" d="M3,3 L21,21 M3,21 L21,3"></path></svg>
+    <svg className="close" onClick={() => setShowError(false)} stroke="currentColor" fill="#BCD7BE" stroke-width="0" viewBox="0 0 24 24"   height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#f4c7c7" stroke-width="2" d="M3,3 L21,21 M3,21 L21,3"></path></svg>
     </Alert>
   }
 
@@ -88,21 +118,25 @@ function Auth(props) {
         <div className='box_1'>
           <div>
             <h3 className="titleFirst">Instadams</h3>
-            <h1 className="titleSecond"><span>Start your account with us</span>
+            <h1 className="titleSecond"><span>Démarre ton compte Instadams avec nous.</span>
             </h1>
           </div>
           <button className="btnSignIn" onClick={() => {
             setStateModalSubscribe('block')
-          }}>Sign Up</button>
+          }}>S'inscrire</button>
         </div>
-        <div className="box_2">
-          <form className="Auth" onSubmit={handleSubmit}>
-            <h3 className="title_auth">Sign Up</h3>
-            <label className="label">Username</label>
+          <form className="Auth box_2" onSubmit={handleSubmit}>
+            <div className="connecter_hambourg_icon">
+              <h3 className="title_auth">Se connecter </h3>
+              <span class="material-symbols-outlined" onClick={() => {
+            setStateModalSubscribe('block')
+          }}>menu</span>
+            </div>
+            <label className="label">Utilisateur</label>
             <input type="mail" ref={userNameRef} className="input" required></input>
-            <label className="label">Password</label>
+            <label className="label">Mot de passe</label>
             <input type="password" ref={passwordRef} className="input" required></input>
-            <button className="login_auth">Login</button>
+            <button className="login_auth">Se connecter</button>
             <div>
               <div className="containerLine">
                 <span className="line"></span>
@@ -114,7 +148,7 @@ function Auth(props) {
             </div>
 
           </form>
-        </div>
+      
 
       </section>
     </>

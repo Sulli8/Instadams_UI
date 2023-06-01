@@ -4,3 +4,21 @@
     background-color: #000;
     width: 100%;
 }
+.box_load {
+    display: flex;
+    justify-content: space-between;
+     color:#fff;
+     background-color: #000;
+     border:1px solid #ababab;
+}
+.rotation_load {
+    animation: rotating 1s infinite;
+}
+@keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(180deg);
+    }
+}

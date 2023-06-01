@@ -1,20 +1,26 @@
 import './SearchUser.css'
 import {useState,useEffect} from "react"
 import Axios from 'axios'
-import { EastRounded } from '@mui/icons-material'
+import {
+  BrowserRouter,
+  Routes,
+  Route,useNavigate
+} from 'react-router-dom';
 const SearchUser = (props) =>{
+    const navigate = useNavigate()
     const [datas,setDatas] = useState([])
     const [searchTerm,setSearchTerm] = useState([])
     useEffect(()=> {
+      if(localStorage.getItem('token')){
         Axios.get('http://localhost:3001/api/users', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         })
           .then(function (response) {
-            
             setDatas(response.data.response)
         })
+      }
       }, [])
       const handleSearchTerm = (e) => {
         let value = e.target.value
@@ -34,11 +40,29 @@ const SearchUser = (props) =>{
             <div className="search_results">
               {
                 search.map(val => {
-                    return <div className="search_result" key={val.id}>{val.username}</div>
+                    return <div onClick={(e) => {
+                      props.setAppel()
+                    
+                      Axios.post('http://localhost:3001/api/post_profile',{
+                        username : val.username
+                       }, {
+                          headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                          }
+                        })
+                          .then(function (response) {
+                            navigate("/profil/"+val.username,{
+                              itemId: 86,
+                              state: response.data.profil[0].Posts,
+                            }
+                            )
+                        
+                        })
+                     
+                    }} className="search_result" key={val.id}>{val.username}</div>
                 })
               }
              
-                
             
             </div>
         </aside>

@@ -32,7 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={isloggedIn ? <Home /> : <Auth isLogged={loggedIn}/>}> </Route>
         <Route path="/home" element={isloggedIn ? <Home setShowSuccess={setShowSuccess} show_success={show_success} /> : <Auth isLogged={loggedIn}/>}></Route>
-        <Route path="/profil" element={isloggedIn ? <Profil/> : <Auth isLogged={loggedIn}/> }></Route>
+        <Route path="/profil/:user_name" element={isloggedIn ? <Profil/> : <Auth isLogged={loggedIn}/> }></Route>
         <Route path="/createPost" element={ isloggedIn ? <CreatePost setShowSuccess={setShowSuccess} />  : <Auth isLogged={loggedIn}/>}></Route>
         <Route path="/messages" element={ isloggedIn ? <Messages /> : <Auth isLogged={loggedIn}/>}></Route>
       </Routes>

@@ -1,13 +1,13 @@
-import './Auth.css';
-import React, { useRef, useState } from 'react';
-import Axios from 'axios'
-import {
-  BrowserRouter as Router, useNavigate
-} from 'react-router-dom';
-import ModalSubscribe from "../ModalSubscribe/ModalSubscribe"
-import Alert from 'react-bootstrap/Alert';
 import { GoogleLogin } from '@react-oauth/google';
-import jwt_decode from "jwt-decode"
+import Axios from 'axios';
+import jwt_decode from "jwt-decode";
+import React, { useRef, useState } from 'react';
+import Alert from 'react-bootstrap/Alert';
+import {
+  useNavigate
+} from 'react-router-dom';
+import ModalSubscribe from "../ModalSubscribe/ModalSubscribe";
+import './Auth.css';
 function Auth(props) {
   let alertDialog;
   const userNameRef = useRef(null);
@@ -49,28 +49,27 @@ function Auth(props) {
       password: user_object_google.sub,
       username: "G_"+user_object_google.given_name
     }
-  const auth_google = () => {
-    Axios.post(`http://localhost:3001/api/login`,raw, {
-      headers: {
-        'Access-Control-Allow-Origin' : '*'
-      }
-    })
-      .then(res => {
-        if (res.data.token != null && res.data.token.length > 20) {
-          localStorage.setItem("token", res.data.token)
-          console.log('Utilisateur existant : connexion ! ')
-          if(localStorage.getItem('token').length > 0){
-            props.isLogged()
-            navigate("/home")
-          }
+    const auth_google = () => {
+      Axios.post(`http://localhost:3001/api/login`,raw, {
+        headers: {
+          'Access-Control-Allow-Origin' : '*'
         }
       })
-      .catch(error => {
-        setShowError(true)
-      })
-  }
+        .then(res => {
+          if (res.data.token != null && res.data.token.length > 20) {
+            localStorage.setItem("token", res.data.token)
+            if(localStorage.getItem('token').length > 0){
+              props.isLogged()
+              navigate("/home")
+            }
+          }
+        })
+        .catch(error => {
+          setShowError(true)
+        })
+    }
 
-  if(localStorage.getItem('login_google')){
+  if(localStorage.getItem('login_google') != null && localStorage.getItem('login_google').toString() == "true"){
     auth_google()
   } else {
       Axios.post(`http://localhost:3001/api/signup`,raw,{
@@ -81,12 +80,11 @@ function Auth(props) {
         .then(res => {
           console.log("respsone : ",res)
           if(res.data.message) {
-
-            localStorage.setItem('login_google',true)
             auth_google()
+            localStorage.setItem('login_google',true)
+          } else {
+            localStorage.setItem('login_google',false)
           }
-          
-
         })
     };
   }
@@ -97,13 +95,13 @@ function Auth(props) {
   if(show_success) {
     alertDialog = <Alert  variant="success">
           Utilisateur ajouté avec succès ! Vous pouvez désormais vous connecté.
-      <svg className="close" onClick={() => setShowSuccess(false)} stroke="currentColor" fill="#BCD7BE" stroke-width="0" viewBox="0 0 24 24"   height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#BCD7BE" stroke-width="2" d="M3,3 L21,21 M3,21 L21,3"></path></svg>
+          <span className="close material-symbols-outlined" onClick={() => setShowSuccess(false)} >close</span>
     </Alert>
   }
   if(show_error){
     alertDialog = <Alert variant="danger">
     Username ou mot de passe incorrect.
-    <svg className="close" onClick={() => setShowError(false)} stroke="currentColor" fill="#BCD7BE" stroke-width="0" viewBox="0 0 24 24"   height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#f4c7c7" stroke-width="2" d="M3,3 L21,21 M3,21 L21,3"></path></svg>
+    <span className="close material-symbols-outlined" onClick={() => setShowError(false)} >close</span>
     </Alert>
   }
 
@@ -128,7 +126,7 @@ function Auth(props) {
           <form className="Auth box_2" onSubmit={handleSubmit}>
             <div className="connecter_hambourg_icon">
               <h3 className="title_auth">Se connecter </h3>
-              <span class="material-symbols-outlined" onClick={() => {
+              <span className="material-symbols-outlined" onClick={() => {
             setStateModalSubscribe('block')
           }}>menu</span>
             </div>

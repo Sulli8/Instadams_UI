@@ -25,7 +25,9 @@
   
 }
 .column_post_user {
-    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 200px;
     padding: 1rem 0;
     width: 100%;

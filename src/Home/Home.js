@@ -145,22 +145,25 @@ const  Home = (props) => {
     ]
     let alertDialogPost;
     useEffect(()=> {
-        Axios.get('http://localhost:3001/api/posts', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-          .then(function (response) {
-            setPost([])
-            console.log("POST : ",response)
-        })
+        if(localStorage.getItem('token')){
+            Axios.get('http://localhost:3001/api/posts', {
+                headers: {
+                  'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+              })
+                .then(function (response) {
+                  setPost([])
+                  console.log("POST : ",response)
+              })
+        }
+       
       }, [])
     if(props.show_success) {
         alertDialogPost = <Alert  variant="success">
-              Post ajouté avec succès ! 
-          <svg className="close" onClick={() => props.setShowSuccess(false)} stroke="currentColor" fill="#BCD7BE" stroke-width="0" viewBox="0 0 24 24"  className="close" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#BCD7BE" stroke-width="2" d="M3,3 L21,21 M3,21 L21,3"></path></svg>
+            Post ajouté avec succès !
+            <span className="close material-symbols-outlined" onClick={() => props.setShowSuccess(false)} >close</span>
         </Alert>
-      }
+    }
     return (
         <section className="Home">
             {alertDialogPost}

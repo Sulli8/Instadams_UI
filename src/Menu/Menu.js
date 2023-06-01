@@ -3,12 +3,26 @@ import {
     Routes,
     Route,useNavigate
 } from 'react-router-dom';
-import {useState} from "react"
+import {useState,useEffect} from "react"
 import "./Menu.css"
+import Axios from 'axios';
 import SearchUser from '../SearchUser/SearchUser';
-function Menu() {
+function Menu(props) {
     const navigate = useNavigate();
     const [showSearchBar,setShowSearchBar] = useState("none")
+    const [name,setName] = useState('none')
+  
+    useEffect(
+        () => {
+            Axios.get('http://localhost:3001/api/user', {
+                headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+                .then(function (response) {
+                    setName(response.data.response.username)
+            })
+        },[])
     return (
         <>
         <div className="containerMenu">
@@ -37,7 +51,8 @@ function Menu() {
                         <h3>Rechercher</h3>
                     </a>
                     <a onClick={() => {
-                        navigate("/profil")
+                        console.log(name)
+                        navigate("/profil/"+name,{username:name})
                     }}>
                         <span className="material-symbols-outlined">
                             person
@@ -78,7 +93,7 @@ function Menu() {
                 </div>
             </aside>
         </div>
-        <SearchUser showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
+        <SearchUser setAppel={props.setAppel} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
         </>
     )
 }

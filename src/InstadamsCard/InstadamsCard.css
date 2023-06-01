@@ -70,7 +70,7 @@
 
 @media only screen and (min-width: 960px) {
     .nb_like, .properties_card, .user_profil, .hashtag {
-        font-size: 20px;
+        font-size: 15px;
     }
     .comment {
         font-size: 10px;
@@ -85,10 +85,10 @@
 
 @media only screen and (min-width: 1240px) {
     .nb_like,.properties_card, .user_profil, .hashtag{
-        font-size: 22px;
+        font-size: 17px;
     }
     .comment {
-        font-size: 14px;
+        font-size: 12px;
     }
     .account {
         height: 35px;

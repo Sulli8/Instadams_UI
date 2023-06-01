@@ -7,9 +7,9 @@ const StepOne = (props) => {
             <div className="formStepOne">
                 <div className="boxInput">
                     <input required="required" accept="image/*, .jpg,.png,.jpeg" type="file" name="File" id="file" className="fileInputStepOne" onChange={props.handleChange}></input>
+                    
                     <label htmlFor="file"> Sélectionner sur l'ordinateur</label>
                 </div>
-               
                 <button type="button" className={"buttonSwitchStepSuiv " + (props.cpt == 1 ? "active" : "desactive")} onClick={
                     () => {
                         if(props.frontFormData.File.length == 0){

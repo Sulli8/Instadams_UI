@@ -4,6 +4,7 @@ import Home from './Home/Home';
 import Profil  from './Profil/Profil';
 import CreatePost  from './CreatePost/CreatePost';
 import Messages from './Messages/Messages';
+import Page from './Page/Page';
 import {
   BrowserRouter,
   Routes,
@@ -30,7 +31,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={isloggedIn ? <Home /> : <Auth isLogged={loggedIn}/>}> </Route>
+        <Route path="/" element={isloggedIn ? <Page setShowSuccess={setShowSuccess} show_success={show_success} /> : <Auth isLogged={loggedIn}/>}></Route>
         <Route path="/home" element={isloggedIn ? <Home setShowSuccess={setShowSuccess} show_success={show_success} /> : <Auth isLogged={loggedIn}/>}></Route>
         <Route path="/profil/:user_name" element={isloggedIn ? <Profil/> : <Auth isLogged={loggedIn}/> }></Route>
         <Route path="/createPost" element={ isloggedIn ? <CreatePost setShowSuccess={setShowSuccess} />  : <Auth isLogged={loggedIn}/>}></Route>

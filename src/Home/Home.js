@@ -167,7 +167,6 @@ const  Home = (props) => {
     return (
         <section className="Home">
             {alertDialogPost}
-            <Menu></Menu>
             <div className="storiesAndPublication">
                 <Stories stories={stories}></Stories>
                 <Post posts={posts}></Post>

@@ -16,7 +16,6 @@ function CreatePost(props) {
     <>
      {alertDialog}
     <div className="containerModalCreatePost">
-      <Menu></Menu>
       <ModalCreatePost load={load} setShowLoad={setShowLoad} setShowSuccess={props.setShowSuccess}></ModalCreatePost>
     </div>
     </>

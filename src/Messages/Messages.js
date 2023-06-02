@@ -109,7 +109,7 @@ function Messages(props) {
     return (
         <>
             <div className="containerMesssages">
-                <Menu></Menu>
+     
                 <div className="box_messages">
                     <div className="messageSending">
                         <UserMessages messages={messages}></UserMessages>

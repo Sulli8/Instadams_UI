@@ -1,7 +1,9 @@
 .header {
     padding:10px;
     background-color: #000;
-    width:80%;
+    width: 30%;
+    position: absolute;
+    left: 0;
 }
 .rechercher {
     background-color:#262626;

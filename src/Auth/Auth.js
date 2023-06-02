@@ -60,7 +60,7 @@ function Auth(props) {
             localStorage.setItem("token", res.data.token)
             if(localStorage.getItem('token').length > 0){
               props.isLogged()
-              navigate("/home")
+              navigate("/")
             }
           }
         })

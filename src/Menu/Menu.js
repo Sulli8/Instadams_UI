@@ -11,7 +11,6 @@ function Menu(props) {
     const navigate = useNavigate();
     const [showSearchBar,setShowSearchBar] = useState("none")
     const [name,setName] = useState('none')
-  
     useEffect(
         () => {
             Axios.get('http://localhost:3001/api/user', {
@@ -35,7 +34,7 @@ function Menu(props) {
                 </div>
                 <div className="sidebar">
                     <a onClick={() => {
-                        navigate("/home")
+                        props.setPage("home")
                     }} >
                         <span className="material-symbols-outlined">
                             home
@@ -51,9 +50,7 @@ function Menu(props) {
                         <h3>Rechercher</h3>
                     </a>
                     <a onClick={() => {
-                        console.log(name)
-                        props.setAppel()
-                        navigate("/profil/"+name)
+                        props.setPage("profil")
                     }}>
                         <span className="material-symbols-outlined">
                             person
@@ -63,7 +60,7 @@ function Menu(props) {
 
 
                     <a onClick={() => {
-                        navigate("/createPost")
+                        props.setPage("create_post")
                     }}>
                         <span className="material-symbols-outlined">
                             share_reviews
@@ -73,7 +70,7 @@ function Menu(props) {
 
 
                     <a onClick={() => {
-                        navigate("/messages")
+                        props.setPage("messages")
                     }}>
                         <span className="material-symbols-outlined">
                             mail_lock
@@ -83,8 +80,7 @@ function Menu(props) {
 
                     <a onClick={() => {
                         localStorage.removeItem('token');
-                       
-                        window.location.href = "/"
+                        window.location.reload()
                     }}>
                         <span className="material-symbols-outlined">
                             logout
@@ -94,7 +90,7 @@ function Menu(props) {
                 </div>
             </aside>
         </div>
-        <SearchUser setAppel={props.setAppel} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
+        <SearchUser search_user={props.search_user} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
         </>
     )
 }

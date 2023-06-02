@@ -36,12 +36,11 @@
           }
         })
           .then(function (response) {
-            
             console.log(response.data.profil[0].Posts)
             setPostProfil(response.data.profil[0].Posts)
         })
     }
-    useEffect(()=> {
+    /*useEffect(()=> {
       
       if(state){
         setPostProfil(state)
@@ -57,7 +56,7 @@
               setPostProfil(response.data.profil[0].Posts)
           })
       }
-    },[])
+    },[])*/
     return (
 
       <div className="profil_body">

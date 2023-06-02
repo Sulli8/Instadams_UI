@@ -41,9 +41,10 @@ const SearchUser = (props) =>{
               {
                 search.map(val => {
                     return <div onClick={(e) => {
+                      navigate("/profil/"+val.username)
                       props.setAppel()
                     
-                      Axios.post('http://localhost:3001/api/post_profile',{
+                      /*Axios.post('http://localhost:3001/api/post_profile',{
                         username : val.username
                        }, {
                           headers: {
@@ -57,7 +58,7 @@ const SearchUser = (props) =>{
                             }
                             )
                         
-                        })
+                        })*/
                      
                     }} className="search_result" key={val.id}>{val.username}</div>
                 })

@@ -108,11 +108,8 @@ function Auth(props) {
   return (
     <>
       <ModalSubscribe  setStateModalSubscribe={setStateModalSubscribe} show={show_success} setShow={setShowSuccess} isLogged={props.isLogged} valueState={stateModalSubscribe} setStatutModalSubscribe={setStateModalSubscribe}/>
-    
       {alertDialog}
-    
       <section className='section'>
-      
         <div className='box_1'>
           <div>
             <h3 className="titleFirst">Instadams</h3>

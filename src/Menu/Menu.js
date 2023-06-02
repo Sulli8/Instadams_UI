@@ -52,7 +52,8 @@ function Menu(props) {
                     </a>
                     <a onClick={() => {
                         console.log(name)
-                        navigate("/profil/"+name,{username:name})
+                        props.setAppel()
+                        navigate("/profil/"+name)
                     }}>
                         <span className="material-symbols-outlined">
                             person

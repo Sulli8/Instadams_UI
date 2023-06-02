@@ -36,7 +36,6 @@
                 setFormDataFront({...front_form_data,
                     "image":URL.createObjectURL(e.target.files[0])
                 })
-                
                 setFile({file:e.target.files[0]})
             }
             setFormDataFront({...front_form_data,

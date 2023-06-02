@@ -32,7 +32,7 @@ function Auth(props) {
           localStorage.setItem("token", res.data.token)
           if(localStorage.getItem('token').length > 0){
             props.isLogged()
-            navigate("/home")
+            navigate("/")
           }
         }
       })
@@ -110,16 +110,7 @@ function Auth(props) {
       <ModalSubscribe  setStateModalSubscribe={setStateModalSubscribe} show={show_success} setShow={setShowSuccess} isLogged={props.isLogged} valueState={stateModalSubscribe} setStatutModalSubscribe={setStateModalSubscribe}/>
       {alertDialog}
       <section className='section'>
-        <div className='box_1'>
-          <div>
-            <h3 className="titleFirst">Instadams</h3>
-            <h1 className="titleSecond"><span>Démarre ton compte Instadams avec nous.</span>
-            </h1>
-          </div>
-          <button className="btnSignIn" onClick={() => {
-            setStateModalSubscribe('block')
-          }}>S'inscrire</button>
-        </div>
+       
           <form className="Auth box_2" onSubmit={handleSubmit}>
             <div className="connecter_hambourg_icon">
               <h3 className="title_auth">Se connecter </h3>
@@ -127,11 +118,17 @@ function Auth(props) {
             setStateModalSubscribe('block')
           }}>menu</span>
             </div>
+            <h3 className="titleFirst">Instadams</h3>
+            <h1 className="titleSecond"><span>Démarre ton compte Instadams avec nous.</span>
+            </h1>
             <label className="label">Utilisateur</label>
             <input type="mail" ref={userNameRef} className="input" required></input>
             <label className="label">Mot de passe</label>
             <input type="password" ref={passwordRef} className="input" required></input>
             <button className="login_auth">Se connecter</button>
+            <p className="subscribe_account">Vous n'avez pas de compte ? <a className="link_subscribe" onClick={() => {
+            setStateModalSubscribe('block')
+          }}>Inscrivez-vous</a></p>
             <div>
               <div className="containerLine">
                 <span className="line"></span>

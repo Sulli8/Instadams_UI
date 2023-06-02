@@ -70,10 +70,11 @@
 
 .box_2 {
     padding: 10px;
-    background-color: #fff;
+    border:1px solid #5e27cdae;
     color: #fff;
     width: 40%;
-    height: 50vh;
+    height: auto;
+
     
 
 }
@@ -121,6 +122,14 @@
     justify-content:space-between ;
     align-items: baseline;
     color:#000;
+}
+.subscribe_account {
+    text-align: center;
+    color: #fff;
+}
+.link_subscribe {
+    cursor: pointer;
+    color:#5f27cd;
 }
 @media only screen and (max-width: 720px) {
     .box_1 {

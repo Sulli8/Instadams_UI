@@ -76,13 +76,26 @@
     flex-direction: column;
     gap:20px;
 }
-
-.button_profil {
+.button_profil, .contact_btn {
     background-color: #fff;
     color: #000;
+}
+.button_profil,.following_btn ,.follower_btn, .contact_btn {
+
     font-weight: 600;
     padding: 5px;
-    border-radius: 4px;
+    width: 80px;
+    border-radius: 7px;
+}
+.following_btn  {
+    background-color: #FFF;
+    color:#000;
+}
+
+
+.follower_btn  {
+    background-color: #0095F6;
+    color:#fff;
 }
 
 .box_user_name {

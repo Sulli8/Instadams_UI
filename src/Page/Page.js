@@ -10,30 +10,54 @@ import Axios from 'axios'
 function Page(props) {
   const [child,setChild] = useState(<Home></Home>)
   const [userByDefault,setUserByDefault] = useState([])
-
+  const [followings,setFollowings] = useState([])
+  const [followers,setFollowers] = useState([])
   const search_user = (user_name) => {
-    console.log(user_name)
-    Axios.post('http://localhost:3001/api/post_profile', {
-      username:user_name
-    },{
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      }
-    })
-      .then(function (response) {
-        setChild(<Profil post_profil={response.data.profil}></Profil>)
-    })
-  }
-  useEffect(()=> {
-    Axios.post('http://localhost:3001/api/post_profile', {},{
+    if(localStorage.getItem('token')){
+      Axios.post('http://localhost:3001/api/post_profile', {
+        username:user_name
+      },{
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       })
         .then(function (response) {
-          setUserByDefault(response.data.profil)
-          
+          setChild(<Profil followers={followers} followings={followings} post_profil={response.data.profil}></Profil>)
       })
+    }
+
+  }
+  useEffect(()=> {
+    if(localStorage.getItem('token')){
+        Axios.post('http://localhost:3001/api/post_profile', {},{
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+          })
+            .then(function (response) {
+              localStorage.setItem('user_main',response.data.profil[0].username)
+              setUserByDefault(response.data.profil)
+          })
+        }
+        Axios.get('http://localhost:3001/api/users/followings',{
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          }
+        })
+          .then(function (response) {
+            setFollowings(response.data.data)
+        })
+
+
+        Axios.get('http://localhost:3001/api/users/followers',{
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          }
+        })
+          .then(function (response) {
+            setFollowers(response.data.data)
+            console.log("Followers :",response.data.data)
+        })
   },[])
   const setPage = (page_name) => {
     if(localStorage.getItem('token')){
@@ -47,7 +71,7 @@ function Page(props) {
           setChild(<CreatePost></CreatePost>)
           break
         case "profil":
-          setChild(<Profil post_profil={userByDefault}></Profil>)
+          setChild(<Profil followers={followers} followings={followings} post_profil={userByDefault}></Profil>)
           break
         case "messages":
           setChild(<Messages></Messages>)
@@ -56,16 +80,15 @@ function Page(props) {
     } else {
       setChild(<Auth></Auth>)
     }
-    console.log("Page Name  : ",page_name)
   }
   return (
     <section className="child_page">
-    <Menu search_user={search_user} setPage={setPage}></Menu>
+      <Menu search_user={search_user} setPage={setPage}></Menu>
       {child}
     </section>
   );
   }
- 
+
 
 
 export default Page;

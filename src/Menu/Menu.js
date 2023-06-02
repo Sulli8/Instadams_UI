@@ -13,14 +13,16 @@ function Menu(props) {
     const [name,setName] = useState('none')
     useEffect(
         () => {
-            Axios.get('http://localhost:3001/api/user', {
-                headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
-            })
-                .then(function (response) {
-                    setName(response.data.response.username)
-            })
+            if(localStorage.getItem('token')){
+                Axios.get('http://localhost:3001/api/user', {
+                    headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                    .then(function (response) {
+                        setName(response.data.response.username)
+                })
+            }
         },[])
     return (
         <>
@@ -80,6 +82,7 @@ function Menu(props) {
 
                     <a onClick={() => {
                         localStorage.removeItem('token');
+                        localStorage.removeItem('user_main');
                         window.location.reload()
                     }}>
                         <span className="material-symbols-outlined">

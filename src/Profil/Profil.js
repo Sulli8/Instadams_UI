@@ -1,11 +1,10 @@
       import './Profil.css';
-    
-      import { useState } from 'react';
-      function Profil(props) {
-        console.log(props.post_profil)
+      import Axios from 'axios';
+      import { useEffect, useState } from 'react';
+   
+      const Profil = (props) => {
         let repart_feed = []
         let matrice = [];
-        
         let copied = props.post_profil[0].Posts
         let cpt = 0
         for (let i = -1; i < copied.length; i++) {
@@ -15,6 +14,56 @@
             repart_feed.push(matrice) 
           }
           cpt+=1
+        }
+        let buttonFollowing_Edit_account;
+        let filter_following =  props.followings.map(res => {return res.followedId})
+        const [btn_follower_following,setBtnFollowerFollowing] = useState();
+        const follow = (id) => {
+          if(localStorage.getItem('token')){
+            Axios.post('http://localhost:3001/api/users/follow/'+id, {
+            },{
+              headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              }
+            })
+              .then(function (response) {
+                filter_following.push(id)
+                buttonFollowing_Edit_account = btn_following()
+            })
+          }
+        }
+      
+       
+        const btn_edit_account = () => {
+          return <button className="button_profil" onClick={
+            ()=> {
+              setProfilNthFirst('none')
+              setProfilNthSecond('flex')
+            }
+          }>Modifier Profil</button>
+        }
+
+        const btn_followers = () => {
+          return <button className="follower_btn" onClick={()=> {
+            follow(props.post_profil[0].id)
+          }}>Suivre</button>
+        }
+
+        const btn_following = () => {
+          return <button className="following_btn" onClick={()=> {
+            //  unfollow(props.post_profil[0].id)
+            }}>Suivi(e)</button>
+        }
+
+        if(localStorage.getItem('user_main') != props.post_profil[0].username){
+          if(filter_following.includes(props.post_profil[0].id)){
+            console.log(props.post_profil[0].id)
+            buttonFollowing_Edit_account = btn_following()
+          } else {
+            buttonFollowing_Edit_account = btn_followers()
+          }
+        } else {
+          buttonFollowing_Edit_account = btn_edit_account()    
         }
         const [styleProfilNthFirst,setProfilNthFirst] = useState('flex')
         const [styleProfilNthSecond,setProfilNthSecond] = useState('none')
@@ -28,18 +77,13 @@
                 <div className="profil_param">
                   <div className="box_user_name">
                     <div className="user_name">{props.post_profil[0].username}</div>
-                    <button className="button_profil" onClick={
-                      ()=> {
-                        setProfilNthFirst('none')
-                        setProfilNthSecond('flex')
-                      }
-                    }>Modifier Profil</button>
-                    <button>Suivre</button>
+                    {buttonFollowing_Edit_account}  
+                    <button className="contact_btn">Contacter</button>  
                   </div>
                   <div className='stats'>
                     <p><b>{props.post_profil[0].Posts.length}</b> Publication</p>
-                      <p><b>0</b> Abonnement</p>
-                      <p><b>0</b> Suivi(e)s</p>
+                      <p><b>{filter_following.length}</b> Abonnement</p>
+                      <p><b>{props.followers.length}</b> Suivi(e)s</p>
                   </div>
                 </div>   
                 </div>

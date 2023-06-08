@@ -83,7 +83,7 @@ function Page(props) {
   }
   return (
     <section className="child_page">
-      <Menu search_user={search_user} setPage={setPage}></Menu>
+      <Menu post_profil={userByDefault} followings={followings} search_user={search_user} setPage={setPage}></Menu>
       {child}
     </section>
   );

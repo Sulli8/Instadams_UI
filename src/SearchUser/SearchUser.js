@@ -10,6 +10,7 @@ const SearchUser = (props) =>{
     const navigate = useNavigate()
     const [datas,setDatas] = useState([])
     const [searchTerm,setSearchTerm] = useState([])
+    let filter_following =  props.followings.map(res => {return res.followedId})
     useEffect(()=> {
       if(localStorage.getItem('token')){
         Axios.get('http://localhost:3001/api/users', {
@@ -42,6 +43,18 @@ const SearchUser = (props) =>{
                 search.map(val => {
                     return <div onClick={(e) => {
                       props.search_user(val.username)
+                      console.log(localStorage.getItem('user_main'),props.post_profil[0].username)
+                      if(localStorage.getItem('user_main') != val.username){
+                          if(filter_following.includes(val.id)){
+                            props.setBtnChange('following')
+                          } else {
+                            props.setBtnChange('follower')
+                          }
+                        } else {
+                           props.setBtnChange('edit')
+                        }
+                      
+                     
                     }} className="search_result" key={val.id}>{val.username}</div>
                 })
               }

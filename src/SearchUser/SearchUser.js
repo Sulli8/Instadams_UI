@@ -7,11 +7,12 @@ import {
   Route,useNavigate
 } from 'react-router-dom';
 const SearchUser = (props) =>{
-    const navigate = useNavigate()
     const [datas,setDatas] = useState([])
     const [searchTerm,setSearchTerm] = useState([])
     let filter_following =  props.followings.map(res => {return res.followedId})
     useEffect(()=> {
+  
+
       if(localStorage.getItem('token')){
         Axios.get('http://localhost:3001/api/users', {
           headers: {
@@ -42,19 +43,16 @@ const SearchUser = (props) =>{
               {
                 search.map(val => {
                     return <div onClick={(e) => {
-                      props.search_user(val.username)
-                      console.log(localStorage.getItem('user_main'),props.post_profil[0].username)
                       if(localStorage.getItem('user_main') != val.username){
+                        console.log(filter_following,val.id)
                           if(filter_following.includes(val.id)){
-                            props.setBtnChange('following')
+                            props.search_user(val.username,"following",val.id)
                           } else {
-                            props.setBtnChange('follower')
+                            props.search_user(val.username,"follower",val.id)
                           }
                         } else {
-                           props.setBtnChange('edit')
-                        }
-                      
-                     
+                          props.search_user(val.username,"edit",val.id)
+                      }
                     }} className="search_result" key={val.id}>{val.username}</div>
                 })
               }

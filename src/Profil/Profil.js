@@ -1,9 +1,6 @@
         import './Profil.css';
         import Axios from 'axios';
         import { useEffect, useState } from 'react';
-        import ButtonFollowing from "../ButtonFollowing/ButtonFollowing";
-        import ButtonFollower from "../ButtonFollower/ButtonFollower";
-        import ButtonEditProfil from "../ButtonEditProfil/ButtonEditProfil";
         const Profil = (props) => {
           let repart_feed = []
           let matrice = [];
@@ -17,41 +14,13 @@
             }
             cpt+=1
           }
-         
+          console.log("ACTUALISATION ETAT ON : ",props.buttonChange)
+         useEffect(()=> {
+          console.log("ACTUALISATION ETAT INIT : ",props.buttonChange)
+         },[])
           const [button_change,setButtonChange] = useState("");
           const [styleProfilNthFirst,setProfilNthFirst] = useState('flex')
           //const [styleProfilNthSecond,setProfilNthSecond] = useState('none')
-          const follow = (id) => {
-            if(localStorage.getItem('token')){
-              Axios.post('http://localhost:3001/api/users/follow/'+id, {
-              },{
-                headers: {
-                  'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                }
-              })
-                .then(function (response) {
-                  //filter_following.push(id)
-                  
-              })
-            }
-          }
-       
-       /* useEffect(()=> {
-          console.log(filter_following)
-          console.log(props.post_profil[0].id)
-          console.log(props.post_profil[0].username)
-          if(localStorage.getItem('user_main') != props.post_profil[0].username){
-          console.log(filter_following.includes(props.post_profil[0].id))
-            if(filter_following.includes(props.post_profil[0].id)){
-              
-            } else {
-              
-            }
-          } else {
-           
-          }
-        },[])*/ 
-         
           return (
           <>
             <div className="profil_body" style={{display:styleProfilNthFirst}}>
@@ -62,13 +31,13 @@
                   <div className="profil_param">
                     <div className="box_user_name">
                       <div className="user_name">{props.post_profil[0].username}</div>
-                      {button_change}
+                      {props.buttonChange}
                       <button className="contact_btn">Contacter</button>  
                     </div>
                     <div className='stats'>
                       <p><b>{props.post_profil[0].Posts.length}</b> Publication</p>
-                        <p><b>{props.followings.length}</b> Abonnement</p>
-                        <p><b>{props.followers.length}</b> Suivi(e)s</p>
+                        <p><b>{props.followers.length}</b> Abonné(e)s</p>
+                        <p><b>{props.followings.length}</b> Suivi(e)s</p>
                     </div>
                   </div>
                   </div>

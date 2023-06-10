@@ -1,7 +1,7 @@
 import "./ButtonFollowing.css";
 const ButtonFollowing = () => {
-    return <button>
-        Following
-    </button>
+    return <button className="following_btn">
+            Suivi(e)s
+        </button>
   }
   export default ButtonFollowing

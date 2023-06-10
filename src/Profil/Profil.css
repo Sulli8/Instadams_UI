@@ -76,7 +76,7 @@
     flex-direction: column;
     gap:20px;
 }
-.button_profil, .contact_btn {
+ .contact_btn {
     background-color: #fff;
     color: #000;
 }
@@ -87,16 +87,7 @@
     width: 80px;
     border-radius: 7px;
 }
-.following_btn  {
-    background-color: #FFF;
-    color:#000;
-}
 
-
-.follower_btn  {
-    background-color: #0095F6;
-    color:#fff;
-}
 
 .box_user_name {
     display: flex;

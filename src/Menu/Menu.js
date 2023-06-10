@@ -11,9 +11,7 @@ function Menu(props) {
     const navigate = useNavigate();
     const [showSearchBar,setShowSearchBar] = useState("none")
     const [name,setName] = useState('none')
-    const setBtnChange = (string) => {
-        console.log(string)
-    }
+ 
     useEffect(
         () => {
             if(localStorage.getItem('token')){
@@ -96,7 +94,7 @@ function Menu(props) {
                 </div>
             </aside>
         </div>
-        <SearchUser post_profil={props.post_profil} followings={props.followings} setBtnChange={setBtnChange} search_user={props.search_user} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
+        <SearchUser post_profil={props.post_profil} followings={props.followings} setBtnChange={props.setBtnChange} search_user={props.search_user} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
         </>
     )
 }

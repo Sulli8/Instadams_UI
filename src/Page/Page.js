@@ -10,11 +10,42 @@ import Axios from 'axios'
 import ButtonFollowing from '../ButtonFollowing/ButtonFollowing';
 import ButtonFollower from '../ButtonFollower/ButtonFollower';
 import ButtonEditProfil from '../ButtonEditProfil/ButtonEditProfil';
+import ModalFollowing from '../ModalFollowing/ModalFollowing';
+import { Modal } from 'bootstrap';
 function Page(props) {
   const [child,setChild] = useState(<Home></Home>)
   const [followings,setFollowings] = useState([])
   const [followers,setFollowers] = useState([])
   const [post_profil,setPostProfil] = useState([])
+  const [modal_following,setModalFollowing] = useState('none')
+  const [idUserFollowing,setIdUserFollowing] = useState(0)
+  const setModalUnFollow = (string) => {
+    setModalFollowing('flex')
+  }
+
+  const setCloseModale = () => {
+    setModalFollowing('none')
+  }
+  const setUnFollow = (id) => {
+    if(localStorage.getItem('token')){
+      Axios.delete('http://localhost:3001/api/users/unfollow/'+idUserFollowing, {
+      },{
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      })
+        .then(function (response) {
+          
+          setFollowings(followings => followings.filter(res => {
+              if(res != id){
+                return res
+              }
+            }))
+            console.log(followings)
+          setChild(<Profil buttonChange={<ButtonFollower></ButtonFollower>} followers={followers} followings={followings} post_profil={post_profil}></Profil>)
+      })
+    }
+  }
   const setFollow = (id) => {
     if(localStorage.getItem('token')){
       Axios.post('http://localhost:3001/api/users/follow/'+id, {
@@ -26,11 +57,10 @@ function Page(props) {
         .then(function (response) {
           setFollowings(followings => [...followings,id])
           console.log("POST PROFILE ",post_profil)
-          setChild(<Profil buttonChange={<ButtonFollowing></ButtonFollowing>} followers={followers} followings={followings} post_profil={post_profil}></Profil>)
+          setChild(<Profil buttonChange={<ButtonFollowing setModalUnFollow={setModalUnFollow}></ButtonFollowing>} followers={followers} followings={followings} post_profil={post_profil}></Profil>)
       })
     }
   }
-
 
   const search_user = (user_name,string,id_user) => {
     if(localStorage.getItem('token')){
@@ -42,19 +72,19 @@ function Page(props) {
         }
       })
         .then(function (response) {
+          setIdUserFollowing(id_user)
           setPostProfil(response.data.profil)
           let button;
           if(string == "follower"){
             button = <ButtonFollower setFollow={setFollow} id_user={id_user}></ButtonFollower>
           }
           if(string == "following"){
-            button = <ButtonFollowing></ButtonFollowing>
+            button = <ButtonFollowing setModalUnFollow={setModalUnFollow}></ButtonFollowing>
           } 
           if(string == "edit"){
             button = <ButtonEditProfil></ButtonEditProfil>
           }
-         
-          setChild(<Profil buttonChange={button} followers={followers} followings={followings} post_profil={post_profil}></Profil>)
+          setChild(<Profil buttonChange={button} followers={followers} followings={followings} post_profil={response.data.profil}></Profil>)
       })
     }
 
@@ -111,8 +141,10 @@ function Page(props) {
       setChild(<Auth></Auth>)
     }
   }
+
   return (
     <section className="child_page">
+      <ModalFollowing setUnFollow={setUnFollow} setCloseModale={setCloseModale} modal_following={modal_following}></ModalFollowing>
       <Menu post_profil={post_profil} followings={followings} search_user={search_user} setPage={setPage}></Menu>
       {child}
     </section>

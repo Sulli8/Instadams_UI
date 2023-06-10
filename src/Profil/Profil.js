@@ -1,6 +1,7 @@
         import './Profil.css';
         import Axios from 'axios';
         import { useEffect, useState } from 'react';
+        import ModalFollowing from '../ModalFollowing/ModalFollowing';
         const Profil = (props) => {
           let repart_feed = []
           let matrice = [];
@@ -15,9 +16,9 @@
             cpt+=1
           }
           console.log("ACTUALISATION ETAT ON : ",props.buttonChange)
-         useEffect(()=> {
-          console.log("ACTUALISATION ETAT INIT : ",props.buttonChange)
-         },[])
+          useEffect(()=> {
+            console.log("ACTUALISATION ETAT INIT : ",props.buttonChange)
+          },[])
           const [button_change,setButtonChange] = useState("");
           const [styleProfilNthFirst,setProfilNthFirst] = useState('flex')
           //const [styleProfilNthSecond,setProfilNthSecond] = useState('none')

@@ -4,3 +4,34 @@
     align-items: center;
     z-index: 1;
 }
+
+.modal_following {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    color:#fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 100vh;
+}
+
+.box_following {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+    width: 300px;
+    background-color:#3a3838;
+    border-radius: 4px;
+}
+.button_flollowing {
+    padding:5px;
+    width: 100%;
+}
+.profil_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: red;
+}

@@ -1,0 +1,15 @@
+
+.account_profil {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.close_modal_following {
+    display: flex;
+    justify-content: flex-end;
+    padding:5px;
+    width: 100%;
+    
+    
+}

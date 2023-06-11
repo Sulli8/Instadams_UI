@@ -27,22 +27,24 @@ function Page(props) {
     setModalFollowing('none')
   }
   const setUnFollow = (id) => {
+    console.log("UNFOLLOW")
     if(localStorage.getItem('token')){
-      Axios.delete('http://localhost:3001/api/users/unfollow/'+idUserFollowing, {
-      },{
+      Axios.delete('http://localhost:3001/api/users/unfollow/'+idUserFollowing,{
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       })
         .then(function (response) {
-          
-          setFollowings(followings => followings.filter(res => {
+          if(response.data.message == "Désabonnement réussi avec succès"){
+            setFollowings(followings => followings.filter(res => {
               if(res != id){
                 return res
               }
             }))
-            console.log(followings)
-          setChild(<Profil buttonChange={<ButtonFollower></ButtonFollower>} followers={followers} followings={followings} post_profil={post_profil}></Profil>)
+          
+          setCloseModale()
+          setChild(<Profil buttonChange={<ButtonFollower setFollow={setFollow} id_user={idUserFollowing}></ButtonFollower>} followers={followers} followings={followings} post_profil={post_profil}></Profil>)
+          }
       })
     }
   }

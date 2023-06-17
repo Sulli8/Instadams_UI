@@ -94,7 +94,7 @@ function Menu(props) {
                 </div>
             </aside>
         </div>
-        <SearchUser post_profil={props.post_profil} followings={props.followings} setBtnChange={props.setBtnChange} search_user={props.search_user} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
+        <SearchUser following_update={props.following_update} post_profil={props.post_profil} followings={props.followings} setBtnChange={props.setBtnChange} search_user={props.search_user} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
         </>
     )
 }

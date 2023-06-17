@@ -15,10 +15,8 @@
             }
             cpt+=1
           }
-          console.log("ACTUALISATION ETAT ON : ",props.buttonChange)
-          useEffect(()=> {
-            console.log("ACTUALISATION ETAT INIT : ",props.buttonChange)
-          },[])
+        
+      
           const [button_change,setButtonChange] = useState("");
           const [styleProfilNthFirst,setProfilNthFirst] = useState('flex')
           //const [styleProfilNthSecond,setProfilNthSecond] = useState('none')

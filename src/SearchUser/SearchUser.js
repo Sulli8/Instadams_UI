@@ -9,7 +9,7 @@ import {
 const SearchUser = (props) =>{
     const [datas,setDatas] = useState([])
     const [searchTerm,setSearchTerm] = useState([])
-    let filter_following =  props.followings.map(res => {return res.followedId})
+    
     useEffect(()=> {
   
 
@@ -31,6 +31,7 @@ const SearchUser = (props) =>{
     let search = datas.filter(val => {
         return val.username.toLowerCase().includes(searchTerm)
     })
+    let filter_followings = props.followings.map(res => {return res.followedId})
     return (
          <aside style={{display:props.showSearchBar}}  className="header">
             <div className="header_icon">
@@ -43,9 +44,9 @@ const SearchUser = (props) =>{
               {
                 search.map(val => {
                     return <div onClick={(e) => {
+                      
                       if(localStorage.getItem('user_main') != val.username){
-                        console.log(filter_following,val.id)
-                          if(filter_following.includes(val.id)){
+                          if(filter_followings.includes(val.id)){
                             props.search_user(val.username,"following",val.id)
                           } else {
                             props.search_user(val.username,"follower",val.id)

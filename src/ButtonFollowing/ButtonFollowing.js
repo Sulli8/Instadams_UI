@@ -1,10 +1,12 @@
 import "./ButtonFollowing.css";
 const ButtonFollowing = (props) => {
-    const modal_unfollow = () => {
-        props.setModalUnFollow("flex")
-    }
-    return <button className="following_btn" onClick={modal_unfollow}>
-                Suivi(e)s
-        </button>
+
+    let button;
+    button = <button className="following_btn" onClick={()=> {
+        props.setUnFollow(props.id_user)
+    }}>
+    Suivi(e)s
+</button>
+    return button
   }
   export default ButtonFollowing

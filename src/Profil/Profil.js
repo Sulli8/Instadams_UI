@@ -1,11 +1,12 @@
         import './Profil.css';
         import Axios from 'axios';
         import { useEffect, useState } from 'react';
-        import ModalFollowing from '../ModalFollowing/ModalFollowing';
+      
         const Profil = (props) => {
           let repart_feed = []
           let matrice = [];
-          let copied = props.post_profil[0].Posts
+          console.log(props.data_details)
+          let copied = props.profil[0].Posts
           let cpt = 0
           for (let i = -1; i < copied.length; i++) {
             matrice.push(copied[i])
@@ -15,8 +16,7 @@
             }
             cpt+=1
           }
-        
-      
+          
           const [button_change,setButtonChange] = useState("");
           const [styleProfilNthFirst,setProfilNthFirst] = useState('flex')
           //const [styleProfilNthSecond,setProfilNthSecond] = useState('none')
@@ -29,12 +29,12 @@
                   <div className="round_circle"></div>
                   <div className="profil_param">
                     <div className="box_user_name">
-                      <div className="user_name">{props.post_profil[0].username}</div>
+                      <div className="user_name">{props.profil[0].username}</div>
                       {props.buttonChange}
                       <button className="contact_btn">Contacter</button>  
                     </div>
                     <div className='stats'>
-                      <p><b>{props.post_profil[0].Posts.length}</b> Publication</p>
+                      <p><b>{copied.length}</b> Publication</p>
                         <p><b>{props.followers.length}</b> Abonné(e)s</p>
                         <p><b>{props.followings.length}</b> Suivi(e)s</p>
                     </div>

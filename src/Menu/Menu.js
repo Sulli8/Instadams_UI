@@ -11,9 +11,15 @@ function Menu(props) {
     const navigate = useNavigate();
     const [showSearchBar,setShowSearchBar] = useState("none")
     const [name,setName] = useState('none')
- 
+    const setSearch = (username,type,id) => {
+        props.search_user(username,type,id)
+        //console.log(username,type,id)
+    }
+
     useEffect(
+
         () => {
+            console.log("DATATATATAT drtail :",props.data_details)
             if(localStorage.getItem('token')){
                 Axios.get('http://localhost:3001/api/user', {
                     headers: {
@@ -94,7 +100,7 @@ function Menu(props) {
                 </div>
             </aside>
         </div>
-        <SearchUser following_update={props.following_update} post_profil={props.post_profil} followings={props.followings} setBtnChange={props.setBtnChange} search_user={props.search_user} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
+        <SearchUser followings={props.followings} setBtnChange={props.setBtnChange} search_user={setSearch} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
         </>
     )
 }

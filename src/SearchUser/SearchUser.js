@@ -12,7 +12,6 @@ const SearchUser = (props) =>{
     
     useEffect(()=> {
   
-
       if(localStorage.getItem('token')){
         Axios.get('http://localhost:3001/api/users', {
           headers: {
@@ -31,9 +30,12 @@ const SearchUser = (props) =>{
     let search = datas.filter(val => {
         return val.username.toLowerCase().includes(searchTerm)
     })
+
     let filter_followings = props.followings.map(res => {return res.followedId})
+    console.log("Filter followgins : ",filter_followings)
+  
     return (
-         <aside style={{display:props.showSearchBar}}  className="header">
+        <aside style={{display:props.showSearchBar}}  className="header">
             <div className="header_icon">
                 <h2>Rechercher</h2>
                 <span className="material-symbols-outlined" onClick={()=> {props.setShowSearchBar('none')}}>close</span>
@@ -44,10 +46,11 @@ const SearchUser = (props) =>{
               {
                 search.map(val => {
                     return <div onClick={(e) => {
-                      
+                     
                       if(localStorage.getItem('user_main') != val.username){
                           if(filter_followings.includes(val.id)){
                             props.search_user(val.username,"following",val.id)
+                           
                           } else {
                             props.search_user(val.username,"follower",val.id)
                           }

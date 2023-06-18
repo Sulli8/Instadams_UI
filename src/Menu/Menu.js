@@ -6,15 +6,8 @@ import {
 import {useState,useEffect} from "react"
 import "./Menu.css"
 import Axios from 'axios';
-import SearchUser from '../SearchUser/SearchUser';
 function Menu(props) {
-    const navigate = useNavigate();
-    const [showSearchBar,setShowSearchBar] = useState("none")
     const [name,setName] = useState('none')
-    const setSearch = (username,type,id) => {
-        props.search_user(username,type,id)
-        //console.log(username,type,id)
-    }
 
     useEffect(
 
@@ -51,7 +44,7 @@ function Menu(props) {
                         <h3>Accueil</h3>
                     </a>
                     <a  onClick={() => {
-                        setShowSearchBar('block')
+                        props.setShowSearchBar('block')
                     }}>
                         <span className="material-symbols-outlined">
                         search
@@ -100,7 +93,6 @@ function Menu(props) {
                 </div>
             </aside>
         </div>
-        <SearchUser followings={props.followings} setBtnChange={props.setBtnChange} search_user={setSearch} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
         </>
     )
 }

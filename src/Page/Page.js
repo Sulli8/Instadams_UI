@@ -1,27 +1,35 @@
-import { useEffect, useReducer, useState } from 'react';
-import './Page.css';
-import Menu from '../Menu/Menu';
-import Home from '../Home/Home';
-import CreatePost from '../CreatePost/CreatePost';
-import Messages from '../Messages/Messages';
+import Axios from 'axios';
+import { useEffect, useState } from 'react';
 import Auth from '../Auth/Auth';
-import Profil from '../Profil/Profil';
-import Axios from 'axios'
-import ButtonFollowing from '../ButtonFollowing/ButtonFollowing';
-import ButtonFollower from '../ButtonFollower/ButtonFollower';
 import ButtonEditProfil from '../ButtonEditProfil/ButtonEditProfil';
+import ButtonFollower from '../ButtonFollower/ButtonFollower';
+import ButtonFollowing from '../ButtonFollowing/ButtonFollowing';
+import CreatePost from '../CreatePost/CreatePost';
+import Home from '../Home/Home';
+import Menu from '../Menu/Menu';
+import Messages from '../Messages/Messages';
+import Profil from '../Profil/Profil';
+import SearchUser from '../SearchUser/SearchUser';
+import EditProfil from "../EditProfil/EditProfil";
+import './Page.css';
 
 const  Page = (props) => {
   const [child,setChild] = useState(<Home></Home>)
   const [followings,setFollowings] = useState([])
   const [followers,setFollowers] = useState([])
   const [post_profil,setPostProfile] = useState()
+  const [styleProfilNthFirst,setProfilNthFirst] = useState('flex')
+  const [styleProfilNthSecond,setProfilNthSecond] = useState('none')
   let data_details_refresh;
+  const [showSearchBar,setShowSearchBar] = useState("none")
   const [data_details,setDataDetails] = useState({
     profil:[],
     followings:[],
     followers:[]
   })
+  const setSearch = (username,type,id) => {
+    search_user(username,type,id)
+  }
   const [modal_following,setModalFollowing] = useState('none')
   const [idUserFollowing,setIdUserFollowing] = useState(0)
   /*const [{status,response},makeRequest] =  useApiRequest('http://localhost:3001/api/post_profile',{
@@ -32,8 +40,7 @@ const  Page = (props) => {
   const setCloseModale = () => {
     setModalFollowing('none')
   }
-  const setUnFollow = async(id) => {
-  console.log("unfollow :::::: ",id)
+  const setUnFollow = async(id_user,user_name) => {
     if(localStorage.getItem('token')){
       const response_profile = await Axios({
         url:'http://localhost:3001/api/post_profile',
@@ -42,74 +49,126 @@ const  Page = (props) => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
         data: {
-          id_user :id
+          username:user_name
         }
       })
+      
+  
+      let user_array = {
+        getIdUser:id_user
+      }
 
-
-      const response_delete = Axios.delete('http://localhost:3001/api/users/unfollow/'+id,{
+      const response_delete = Axios.delete('http://localhost:3001/api/users/unfollow/'+id_user,{
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       })
-
-      if(response_delete.status == 200){
-        setFollowings(
+    
+    
+      const response_followings = await Axios.post('http://localhost:3001/api/users/followings',user_array,{
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      })
+  
+      const response_followers = await Axios.post('http://localhost:3001/api/users/followers',user_array,{
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      })
+      console.log("CALL : ",response_followers)
+      if(response_profile.status == 200 
+        && response_followers.status == 200 && 
+        response_followings.status == 200){
+      
+   
+        response_followers.data.followers.filter(res => {
+          if(res.userId != response_profile.data.profil[0].id){
+            return res
+          }
+        })
+        data_details_refresh = {
+          profil:response_profile.data.profil,
+          followings:response_followings.data.followings,
+          followers:response_followers.data.followers,
+         
+        }
+        /*setFollowings(
           data_details.followings.filter(res => {
-            if(res != id){
+            if(res != id_user){
               return res
             }
-          }))
-          let stats = {
-            profil:data_details.profil,
-            followings:followings,
-            followers:followers,
-          }
-          setChild(<Profil buttonChange={<ButtonFollower setFollow={setFollow} id_user={idUserFollowing}></ButtonFollower>}  followers={stats.followers} followings={stats.followings}></Profil>)
+          }))*/
+        
       }
+     setChild(<Profil setChild={setChild} setProfilNthSecond={setProfilNthSecond} styleProfilNthFirst={styleProfilNthFirst} setProfilNthFirst={setProfilNthFirst} styleProfilNthSecond={styleProfilNthSecond} user_name={user_name} id_user={id_user}  button_state={<ButtonFollower user_name={user_name} setFollow={setFollow} id_user={id_user}></ButtonFollower>} profil={data_details_refresh.profil} followings={data_details_refresh.followings} followers={data_details_refresh.followers}></Profil>)
+        
     }
   }
-  const setFollow = async (id) => {
-    console.log("follow :::::: ",id)
+  const setFollow = async (id_user,user_name) => {
+    console.log("follow :::::: ",user_name,id_user)
     if(localStorage.getItem('token')){
-      const response_profile = await Axios({
-        url:'http://localhost:3001/api/post_profile',
-        method:'POST',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        },
-        data: {
-          id_user :id
-        }
-      })
 
-      const response_follow = await Axios.post('http://localhost:3001/api/users/follow/'+id, {
-      },{
+      const response_follow = await Axios.post('http://localhost:3001/api/users/follow/'+id_user,{},{
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       })
 
-      setFollowings( [...data_details.followings,id])
-      console.log(followings)
-      let data_details_refresh = {
-        profil:data_details.profil,
-        followings:followings,
-        followers:followers,
+      if(response_follow.status == 200){
+        const response_profile = await Axios({
+          url:'http://localhost:3001/api/post_profile',
+          method:'POST',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+          data: {
+            username:user_name
+          }
+        })
+        
+    
+        let user_array = {
+          getIdUser:id_user
+        }
+  
+        const response_followings = await Axios.post('http://localhost:3001/api/users/followings',user_array,{
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          }
+        })
+    
+        const response_followers = await Axios.post('http://localhost:3001/api/users/followers',user_array,{
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          }
+        })
+   
+        if(response_profile.status == 200 && response_followers.status == 200 && response_followings.status == 200){
+          console.log("API CALL : ",response_followings.data.followings,response_followers.data.followers,response_profile.data.profil)
+          response_followers.data.followers.push(response_profile.data.profil)
+          data_details_refresh = {
+            profil:response_profile.data.profil,
+            followings:response_followings.data.followings,
+            followers:response_followers.data.followers,
+           
+          }
+          setFollowings( [...data_details.followings,id_user])
+          setChild(<Profil user_name={user_name} id_user={id_user}  button_state={<ButtonFollowing user_name={user_name} setUnFollow={setUnFollow} id_user={id_user}></ButtonFollowing>} profil={data_details_refresh.profil} followings={data_details_refresh.followings} followers={data_details_refresh.followers}></Profil>)
+        }
       }
     }
   }
   const search_user = async (user_name,string,id_user) => {
-    console.log('APPPELL SEARCH REINIT',string,user_name,id_user)
     let button;
     if(string == "follower"){
-      button = <ButtonFollower setFollow={setFollow} id_user={id_user}></ButtonFollower>
+      button = <ButtonFollower  user_name={user_name} setFollow={setFollow} id_user={id_user}></ButtonFollower>
     }
     if(string == "following"){
-      button = <ButtonFollowing setUnFollow={setUnFollow} id_user={id_user}></ButtonFollowing>
+      button = <ButtonFollowing user_name={user_name} setUnFollow={setUnFollow} id_user={id_user}></ButtonFollowing>
     } 
     if(string == "edit"){
-      button = <ButtonEditProfil></ButtonEditProfil>
+      button = <ButtonEditProfil  setChild={setChild} ></ButtonEditProfil>
     }
     const response_profile = await Axios({
       url:'http://localhost:3001/api/post_profile',
@@ -137,19 +196,18 @@ const  Page = (props) => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
     })
+    if(response_profile.status == 200 && response_followers.status == 200 && response_followings.status == 200){
     
-    console.log(response_followers.data)
-
-    if(response_profile.status == 200 && response_followings.status == 200){
-     
       data_details_refresh = {
         profil:response_profile.data.profil,
         followings:response_followings.data.followings,
         followers:response_followers.data.followers,
         button:button
       }
+      console.log(data_details_refresh)
+      setChild(<Profil user_name={user_name} id_user={id_user}  button_state={button} profil={data_details_refresh.profil} followings={data_details_refresh.followings} followers={data_details_refresh.followers}></Profil>)
     }
-    setChild(<Profil id_user={id_user} buttonChange={button} profil={data_details_refresh.profil} followings={data_details_refresh.followings} followers={data_details_refresh.followers} ></Profil>)
+    
 
   }
   useEffect(  ()=> {
@@ -199,10 +257,13 @@ const  Page = (props) => {
           setChild(<CreatePost></CreatePost>)
           break
         case "profil":
-          setChild(<Profil buttonChange={<ButtonEditProfil></ButtonEditProfil>} profil={data_details.profil} followers={data_details.followers} followings={data_details.followings}></Profil>)
+          setChild(<Profil user_name={localStorage.getItem('user_main')} button_state={<ButtonEditProfil  setChild={setChild}></ButtonEditProfil>} profil={data_details.profil} followers={data_details.followers} followings={data_details.followings}></Profil>)
           break
         case "messages":
           setChild(<Messages></Messages>)
+          break
+        case "edit_profil":
+          setChild(<EditProfil></EditProfil>)
           break
       }
     } else {
@@ -212,7 +273,8 @@ const  Page = (props) => {
 
   return (
     <section className="child_page">
-      <Menu profil={data_details.profil} followings={data_details.followings} followers={data_details.followers} search_user={search_user} setPage={setPage}></Menu>
+      <Menu setShowSearchBar={setShowSearchBar} profil={data_details.profil} followings={data_details.followings} followers={data_details.followers} search_user={search_user} setPage={setPage}></Menu>
+      <SearchUser followings={data_details.followings}  setBtnChange={props.setBtnChange} search_user={setSearch} showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}></SearchUser>
       {child}
     </section>
   );

@@ -1,11 +1,13 @@
         import './Profil.css';
         import Axios from 'axios';
-        import { useEffect, useState } from 'react';
+        import { useDebugValue, useEffect, useState } from 'react';
+        import ButtonEditProfil from '../ButtonEditProfil/ButtonEditProfil';
+        import ButtonFollower from '../ButtonFollower/ButtonFollower';
       
         const Profil = (props) => {
           let repart_feed = []
           let matrice = [];
-          console.log(props.data_details)
+        
           let copied = props.profil[0].Posts
           let cpt = 0
           for (let i = -1; i < copied.length; i++) {
@@ -16,13 +18,13 @@
             }
             cpt+=1
           }
-          
-          const [button_change,setButtonChange] = useState("");
-          const [styleProfilNthFirst,setProfilNthFirst] = useState('flex')
-          //const [styleProfilNthSecond,setProfilNthSecond] = useState('none')
+          const edit_account = () => {
+            props.edit_account('flex','none')
+          }
+
           return (
           <>
-            <div className="profil_body" style={{display:styleProfilNthFirst}}>
+            <div className="profil_body">
               <div className='main_profil' >
               <div className="profil_nth_first">
                 <div className="box_statistics">
@@ -30,7 +32,7 @@
                   <div className="profil_param">
                     <div className="box_user_name">
                       <div className="user_name">{props.profil[0].username}</div>
-                      {props.buttonChange}
+                      {props.button_state}
                       <button className="contact_btn">Contacter</button>  
                     </div>
                     <div className='stats'>
@@ -59,26 +61,9 @@
             </div>
               </div>
             </div>
+          
             </>
 
           );
         }
         export default Profil;
-
-
-        /*
-
-  <div className="edit_account" style={{display:styleProfilNthSecond}}>
-            <div>
-              <button type='button' onClick={()=> {
-               // setProfilNthFirst('flex')
-                //setProfilNthSecond('none')
-              }}>
-              Retour 
-              </button>
-              <h1>Modification</h1>
-            </div>
-          
-            </div>
-
-        */

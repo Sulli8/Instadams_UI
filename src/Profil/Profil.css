@@ -136,6 +136,9 @@
     color: #000;
     width: 100%;
 }
+.edit_account {
+    min-height: 100vh;
+}
 @media only screen and (max-width: 768px) {
     .row {
         flex-wrap: wrap;

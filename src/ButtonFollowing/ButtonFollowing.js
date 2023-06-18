@@ -2,8 +2,8 @@ import "./ButtonFollowing.css";
 const ButtonFollowing = (props) => {
 
     let button;
-    button = <button className="following_btn" onClick={()=> {
-        props.setUnFollow(props.id_user)
+    button = <button className="following_btn" onClick={ ()=> {
+        props.setUnFollow(props.id_user,props.user_name)
     }}>
     Suivi(e)s
 </button>

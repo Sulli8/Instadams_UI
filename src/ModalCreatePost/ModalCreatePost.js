@@ -61,7 +61,8 @@
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`,
                             'Access-Control-Allow-Origin' : '*',
-                            'Content-Type':'multipart/form-data'
+                            'Content-Type':'multipart/form-data',
+                            "Content-Security-Policy": "script-src-attr 'self';"
                         },
                     })
                     .then(res => {
@@ -81,7 +82,8 @@
             if(localStorage.getItem('token')){
                 Axios.get('http://localhost:3001/api/users', {
                     headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    "Content-Security-Policy": "script-src-attr 'self';"
                     }
                 })
                     .then(function (response) {

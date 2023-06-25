@@ -148,7 +148,8 @@ const  Home = (props) => {
         if(localStorage.getItem('token')){
             Axios.get('http://localhost:3001/api/posts', {
                 headers: {
-                  'Authorization': `Bearer ${localStorage.getItem('token')}`
+                  'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                  "Content-Security-Policy": "script-src-attr 'self';"
                 }
               })
                 .then(function (response) {

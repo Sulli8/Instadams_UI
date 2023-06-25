@@ -10,7 +10,7 @@ import Menu from '../Menu/Menu';
 import Messages from '../Messages/Messages';
 import Profil from '../Profil/Profil';
 import SearchUser from '../SearchUser/SearchUser';
-import EditProfil from "../EditProfil/EditProfil";
+import MenuEditProfil from "../MenuEditProfil/MenuEditProfil";
 import './Page.css';
 
 const  Page = (props) => {
@@ -47,6 +47,7 @@ const  Page = (props) => {
         method:'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Security-Policy': 'script-src-attr "self";'
         },
         data: {
           username:user_name
@@ -61,6 +62,7 @@ const  Page = (props) => {
       const response_delete = Axios.delete('http://localhost:3001/api/users/unfollow/'+id_user,{
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          "Content-Security-Policy": "script-src-attr 'self';"
         }
       })
     
@@ -68,12 +70,14 @@ const  Page = (props) => {
       const response_followings = await Axios.post('http://localhost:3001/api/users/followings',user_array,{
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          "Content-Security-Policy": "script-src-attr 'self';"
         }
       })
   
       const response_followers = await Axios.post('http://localhost:3001/api/users/followers',user_array,{
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          "Content-Security-Policy": "script-src-attr 'self';"
         }
       })
       console.log("CALL : ",response_followers)
@@ -112,6 +116,7 @@ const  Page = (props) => {
       const response_follow = await Axios.post('http://localhost:3001/api/users/follow/'+id_user,{},{
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          "Content-Security-Policy": "script-src-attr 'self';"
         }
       })
 
@@ -121,6 +126,7 @@ const  Page = (props) => {
           method:'POST',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            "Content-Security-Policy": "script-src-attr 'self';"
           },
           data: {
             username:user_name
@@ -135,12 +141,14 @@ const  Page = (props) => {
         const response_followings = await Axios.post('http://localhost:3001/api/users/followings',user_array,{
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            "Content-Security-Policy": "script-src-attr 'self';"
           }
         })
     
         const response_followers = await Axios.post('http://localhost:3001/api/users/followers',user_array,{
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            "Content-Security-Policy": "script-src-attr 'self';"
           }
         })
    
@@ -175,6 +183,7 @@ const  Page = (props) => {
       method:'POST',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Security-Policy": "script-src-attr 'self';"
       },
       data: {
         username:user_name
@@ -188,12 +197,14 @@ const  Page = (props) => {
     const response_followings = await Axios.post('http://localhost:3001/api/users/followings',user_array,{
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Security-Policy": "script-src-attr 'self';"
       }
     })
 
     const response_followers = await Axios.post('http://localhost:3001/api/users/followers',user_array,{
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Security-Policy": "script-src-attr 'self';"
       }
     })
     if(response_profile.status == 200 && response_followers.status == 200 && response_followings.status == 200){
@@ -218,17 +229,20 @@ const  Page = (props) => {
           let response = await Axios.post('http://localhost:3001/api/post_profile', {},{
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              "Content-Security-Policy": "script-src-attr 'self';"
             }
           })
           const response_followings = await Axios.post('http://localhost:3001/api/users/followings',{},{
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              "Content-Security-Policy": "script-src-attr 'self';"
             }
           })
       
           const response_followers = await Axios.post('http://localhost:3001/api/users/followers',{},{
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              "Content-Security-Policy": "script-src-attr 'self';"
             }
           })
 
@@ -261,9 +275,6 @@ const  Page = (props) => {
           break
         case "messages":
           setChild(<Messages></Messages>)
-          break
-        case "edit_profil":
-          setChild(<EditProfil></EditProfil>)
           break
       }
     } else {

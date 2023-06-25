@@ -1,8 +1,4 @@
-.edit_account {
-    padding: 20px;
-    color:#fff;
-    width: 100%;
-}
+
 .form_edit_profil {
     display: flex;
     justify-content: center;
@@ -25,10 +21,22 @@
     font-weight: bold;
 }
 
-.btn_checkbox {
-    background-color: #fff;
-    cursor: pointer;
+
+
+
+.menu_editProfil {
+    width:20%;
+    min-height: 90vh;
+    border-right: 1px solid #ffffff31;
+    
 }
-.checkbox {
+.menu_editProfil > a > h3 {
+    padding: 10px;
+    box-sizing: border-box;
+}
+.menu_editProfil > a > h3:hover {
+    /*border-left: 2px solid #ffffffb4;*/
+    background-color: #ffffff14;
+    border-left: 2px solid #ffffff31;
 
 }

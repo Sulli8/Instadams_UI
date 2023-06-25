@@ -1,0 +1,17 @@
+.ContainerForm {
+    width: 100%;
+}
+
+.edit_account {
+    padding: 20px;
+    color:#fff;
+    width: 100%;
+}
+
+.box_editProfil {
+    display: flex;
+    width:100%;
+    min-height: 90vh;
+    border: 1px solid #ffffff49;
+}
+

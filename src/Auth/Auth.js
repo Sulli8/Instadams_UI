@@ -24,7 +24,9 @@ function Auth(props) {
       password: passwordRef.current.value
       }, {
       headers: {
-        'Access-Control-Allow-Origin' : '*'
+        'Access-Control-Allow-Origin' : '*',
+        'Content-Security-Policy': 'script-src-attr "self";'
+
       }
     })
       .then(res => {
@@ -52,7 +54,8 @@ function Auth(props) {
     const auth_google = () => {
       Axios.post(`http://localhost:3001/api/login`,raw, {
         headers: {
-          'Access-Control-Allow-Origin' : '*'
+          'Access-Control-Allow-Origin' : '*',
+          "Content-Security-Policy": "script-src-attr 'self';"
         }
       })
         .then(res => {
@@ -75,6 +78,7 @@ function Auth(props) {
       Axios.post(`http://localhost:3001/api/signup`,raw,{
         headers: {
             'Access-Control-Allow-Origin' : '*',
+            "Content-Security-Policy": "script-src-attr 'self';"
           }
       })
         .then(res => {

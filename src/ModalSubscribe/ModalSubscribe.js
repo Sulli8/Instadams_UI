@@ -31,6 +31,7 @@ function ModalSubscribe(props) {
         Axios.post(`http://localhost:3001/api/signup`,raw,{
             headers: { 
                 'Access-Control-Allow-Origin' : '*',
+                "Content-Security-Policy": "script-src-attr 'self';"
               }
           })
             .then(res => {

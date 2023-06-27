@@ -246,7 +246,9 @@ const  Page = (props) => {
             }
           })
 
-          if(response.status == 200 && response_followings.status == 200 && response_followers.status == 200){
+      
+
+          if(response.status == 200){
             localStorage.setItem('user_main',response.data.profil[0].username)
             setDataDetails({
               ...data_details,
@@ -268,7 +270,7 @@ const  Page = (props) => {
           setChild(<Home></Home>)
           break
         case "create_post":
-          setChild(<CreatePost></CreatePost>)
+          setChild(<CreatePost setChild={setChild}></CreatePost>)
           break
         case "profil":
           setChild(<Profil user_name={localStorage.getItem('user_main')} button_state={<ButtonEditProfil  setChild={setChild}></ButtonEditProfil>} profil={data_details.profil} followers={data_details.followers} followings={data_details.followings}></Profil>)
@@ -276,6 +278,8 @@ const  Page = (props) => {
         case "messages":
           setChild(<Messages></Messages>)
           break
+        default:
+          setChild(<Home></Home>)
       }
     } else {
       setChild(<Auth></Auth>)

@@ -14,10 +14,13 @@ function CreatePost(props) {
 }
   return (
     <>
-     {alertDialog}
+    <div>
+    {alertDialog}
     <div className="containerModalCreatePost">
-      <ModalCreatePost load={load} setShowLoad={setShowLoad} setShowSuccess={props.setShowSuccess}></ModalCreatePost>
+      <ModalCreatePost setChild={props.setChild} load={load} setShowLoad={setShowLoad} setShowSuccess={props.setShowSuccess}></ModalCreatePost>
     </div>
+    </div>
+  
     </>
   );
 }

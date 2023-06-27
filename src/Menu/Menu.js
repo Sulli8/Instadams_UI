@@ -53,7 +53,11 @@ function Menu(props) {
                         <h3>Rechercher</h3>
                     </a>
                     <a onClick={() => {
-                        props.setPage("profil")
+                        
+                            props.setPage("profil")
+                       
+                      
+                        
                     }}>
                         <span className="material-symbols-outlined">
                             person

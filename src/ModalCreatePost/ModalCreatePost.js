@@ -4,6 +4,7 @@
     import StepTwo from './StepTwo/StepTwo';
     import StepThree from './StepThree/StepThree';
     import Axios from 'axios';
+    import Home from '../Home/Home';
     import InstadamsCard from '../InstadamsCard/InstadamsCard';
     import {
         BrowserRouter,
@@ -57,7 +58,39 @@
             if(!is_empty){
                 if(localStorage.getItem('token')){
                     props.setShowLoad(true)
-                    Axios.post(`http://localhost:3001/api/posts`,form_data,{
+                 
+                  const post_post = async() => {
+                        const downloadURL = [
+                            'https://yt3.googleusercontent.com/Yz3oelvJmuEdZ7KgZBbQrYGSEk2AXiJOv2GKPawnO-GevldW7xE3ax53gkJvJ7m4Bdg2QRHKkA=s900-c-k-c0x00ffffff-no-rj',
+                            'https://images.sk-static.com/images/media/img/col4/20181026-002640-702185.jpg',
+                            'https://www.thebackpackerz.com/wp-content/uploads/2019/03/Madeintyo-bb16-hot100-2016-billboard-1548.jpeg',
+                            'https://www.usatoday.com/gcdn/presto/2022/03/28/USAT/61a0873f-f580-4c01-b81e-81d5a64a4bdc-GettyImages-1388120392.jpg?crop=3629,2041,x0,y354&width=3200&height=1800&format=pjpg&auto=webp',
+                            'https://i.ytimg.com/vi/g-B68w4bf28/maxresdefault.jpg',
+                            'https://images.bfmtv.com/-p4yUqeJnSRtU316no_QcWl9Pus=/0x58:2048x1210/2048x0/images/Young-Thug-1359102.jpg',
+                            'https://l450v.alamy.com/450vfr/m7hwp9/parramatta-nsw-australie-mar-10-2018-artiste-hip-hop-nous-madeintyo-l-execution-a-la-jumanji-credit-sydney-festival-presse-australienne-zuma-alamy-fil-live-news-m7hwp9.jpg',
+                            'https://global-uploads.webflow.com/62158cc7e1cd8f0ec3729390/63ed20f2d8d25566cff84d19_madeintyo-b3zuW.jpeg',
+                            'https://www.yourtempo.com/uploaded/blog/Blog_1624288294_35.jpg',
+                            'https://img.nrj.fr/nk71ut7_Za0TqZz2pptIz8LUKno=/medias/2019/07/ariana-grande-mac-miller_5d2602d545391.jpg'
+                    
+                        ]
+                        const response_post = await Axios.post('http://localhost:3001/api/posts/create_post_bis',{
+                            url:downloadURL[Math.floor(Math.random() * 10)]
+                        },{
+                            headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                            "Content-Security-Policy": "script-src-attr 'self';"
+                            }
+                        })
+                        if(response_post.status == 200){
+                            props.setShowLoad(false)
+                            //props.setShowSuccess(true)
+                            props.setChild(<Home></Home>)
+                        }
+                    }
+                  post_post()
+            
+               
+                    /*Axios.post(`http://localhost:3001/api/posts`,form_data,{
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`,
                             'Access-Control-Allow-Origin' : '*',
@@ -72,7 +105,7 @@
                             navigate('/home')
                         }
                     
-                    })
+                    })*/
                 }
             } else {
                 console.log('remplissez toutes les valeurs !')

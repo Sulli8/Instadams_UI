@@ -1,20 +1,22 @@
 import './Post.css';
 function Post(props) {
  
-    const posts = props.posts.map((post,i) => 
+    const posts = 
+    props.posts.map((post,i) =>
         <div className="publication" key={i}>
+            
             <div className="containerPublicationOne">
                 <div className="profilPhoto"></div>
                 <div className="descPublication">
                     <div className="username" >{post.username}</div>
-                    <div className="description">{post.description}</div>
+                    <div className="description">Publication @{post.username}</div>
                 </div>
             </div>
 
             <div className="containerPublicationTwo">
 
                 <div className="post" style={{
-                    backgroundImage: `url(${post.content})`,
+                    backgroundImage: `url(${post.url})`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundPosition: "center",

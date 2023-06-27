@@ -47,7 +47,6 @@ const SearchUser = (props) =>{
               {
                 search.map(val => {
                     return <div onClick={(e) => {
-                     
                       if(localStorage.getItem('user_main') != val.username){
                           if(filter_followings.includes(val.id)){
                             props.search_user(val.username,"following",val.id)

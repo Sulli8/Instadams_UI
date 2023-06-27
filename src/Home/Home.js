@@ -144,21 +144,22 @@ const  Home = (props) => {
         }
     ]
     let alertDialogPost;
+    const getPost = async ()=> {
+        const response_post = await Axios.get('http://localhost:3001/api/posts',{
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              "Content-Security-Policy": "script-src-attr 'self';"
+            }
+          })
+
+          console.log("Respsone post : ",response_post)
+          setPost(response_post.data.data)
+    }
+  
     useEffect(()=> {
-        if(localStorage.getItem('token')){
-            Axios.get('http://localhost:3001/api/posts', {
-                headers: {
-                  'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                  "Content-Security-Policy": "script-src-attr 'self';"
-                }
-              })
-                .then(function (response) {
-                  setPost([])
-                  console.log("POST : ",response)
-              })
-        }
-       
-      }, [])
+        getPost()
+        
+    },[])
     if(props.show_success) {
         alertDialogPost = <Alert  variant="success">
             Post ajouté avec succès !
@@ -170,7 +171,8 @@ const  Home = (props) => {
             {alertDialogPost}
             <div className="storiesAndPublication">
                 <Stories stories={stories}></Stories>
-                <Post posts={posts}></Post>
+                <Post posts={posts} ></Post>
+             
             </div>
             <div className="searchAndProfile">
                 <SearchProfile user={user}></SearchProfile>
